@@ -6,7 +6,6 @@
 package Models;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 /**
  *
@@ -66,8 +65,8 @@ public class Famille {
        public Tuteur rechercher_Tuteur(int id){
         return this.ListTuteurs.get(id);
     }
-    public void delete_Tut(Tuteur E){
-        E.setID_famille(0);
-        this.ListTuteurs.remove(E);
+    public void delete_Tut(Tuteur T){
+        T.setID_famille(0);
+        this.ListTuteurs.remove(T);
     }
 }
