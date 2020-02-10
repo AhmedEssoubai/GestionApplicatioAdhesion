@@ -6,107 +6,111 @@
 package Models;
 
 import java.util.Date;
-import java.util.ArrayList;
+
 
 /**
  *
  * @author Zed
  */
 public class Enfant {
-    private String firstname;
-    private String lastname;
-    private String cin;
+    private int ID;
+    private String nom;
+    private String prenom;
     private String cne;
-    private int phone;
     private String email;
-    private Date dateofbirth;
+    private Date date_naissence;
     private String grade;
-    private ArrayList<String> Tuteurs;
-    public Enfant() {
+    private int ID_famille;
+
+    public Enfant(int ID, String nom, String prenom, String cne, String email, Date date_naissence, String grade, int ID_famille) {
+        this.ID = ID;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.cne = cne;
+        this.email = email;
+        this.date_naissence = date_naissence;
+        this.grade = grade;
+        this.ID_famille = ID_famille;
     }
 
-    public Enfant(String firstname, String lastname, String cin, String cne, int phone, String email, Date dateofbirth, String grade) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.cin = cin;
+   
+
+    public Enfant(String nom, String prenom, String cne, String email, Date date_naissence, String grade) {
+        this.nom = nom;
+        this.prenom = prenom;
         this.cne = cne;
-        this.phone = phone;
         this.email = email;
-        this.dateofbirth = dateofbirth;
+        this.date_naissence = date_naissence;
         this.grade = grade;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public int getID_famille() {
+        return ID_famille;
     }
 
-    public String getLastname() {
-        return lastname;
+    public void setID_famille(int ID_famille) {
+        this.ID_famille = ID_famille;
     }
 
-    public String getCin() {
-        return cin;
+    
+    public int getID() {
+        return ID;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
     }
 
     public String getCne() {
         return cne;
     }
 
-    public int getPhone() {
-        return phone;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public Date getDateofbirth() {
-        return dateofbirth;
+    public Date getDate_naissence() {
+        return date_naissence;
     }
 
     public String getGrade() {
         return grade;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public void setCin(String cin) {
-        this.cin = cin;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public void setCne(String cne) {
         this.cne = cne;
     }
 
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setDateofbirth(Date dateofbirth) {
-        this.dateofbirth = dateofbirth;
+    public void setDate_naissence(Date date_naissence) {
+        this.date_naissence = date_naissence;
     }
 
     public void setGrade(String grade) {
         this.grade = grade;
     }
+    
+    
 
-    public ArrayList<String> getTuteurs() {
-        return Tuteurs;
-    }
-
-    public void setTuteurs(ArrayList<String> Tuteurs) {
-        this.Tuteurs = Tuteurs;
-    }
     
     
     

@@ -10,12 +10,14 @@ package Models;
  * @author Zed
  */
 public class Tuteur {
+    private int ID;
     private String prenom;
     private String nom;
     private String cin;
     private int Tel;
     private String email;
     private String profession;
+    private int ID_famille;
 
     public Tuteur(String firstname, String lastname, String cin, int phone, String email, String job) {
         this.prenom = firstname;
@@ -27,15 +29,27 @@ public class Tuteur {
         
     }
 
-    public Tuteur() {
-    }
-        
     
+
+    public Tuteur(int ID, String prenom, String nom, String cin, int Tel, String email, String profession) {
+        this.ID = ID;
+        this.prenom = prenom;
+        this.nom = nom;
+        this.cin = cin;
+        this.Tel = Tel;
+        this.email = email;
+        this.profession = profession;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
     public String getPrenom() {
         return prenom;
     }
 
-    public String getLastname() {
+    public String getNom() {
         return nom;
     }
 
@@ -55,12 +69,20 @@ public class Tuteur {
         return profession;
     }
 
+    public int getID_famille() {
+        return ID_famille;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
 
-    public void setLastname(String lastname) {
-        this.nom = lastname;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public void setCin(String cin) {
@@ -78,6 +100,12 @@ public class Tuteur {
     public void setProfession(String profession) {
         this.profession = profession;
     }
+
+    public void setID_famille(int ID_famille) {
+        this.ID_famille = ID_famille;
+    }
+    
+  
     
     
     
