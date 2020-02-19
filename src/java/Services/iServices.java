@@ -5,6 +5,7 @@
  */
 package Services;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 
 /**
@@ -12,9 +13,9 @@ import java.util.ArrayList;
  * @author Zed
  */
 public interface iServices {
-    public int _Add();
-    public int _get(int id);
-    public ArrayList<Object> _getAll();
-    public boolean _delete(Object T);
-    public boolean _update(int id);
+    public boolean _Add(Connection con);
+    public Object _get(Connection con,int id);
+    public ArrayList<Object> _getAll(Connection con);
+    public boolean _delete(Connection con,Object T);
+    public boolean _update(Connection con,int id);
 }
