@@ -6,6 +6,7 @@
 package Services;
 
 import Models.*;
+import DbContexte.*;
 import java.sql.*;
 import java.text.ParseException;
 import java.util.Date;
@@ -19,19 +20,36 @@ import java.util.logging.Logger;
  * @author Zed
  */
 public class EnfantService implements iServices<Enfant>{
+    private DBContexte assistant;
+    private PreparedStatement preparedStatement;
+    
+    
+    public EnfantService() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+		assistant = DBContexte.getAssistant();
+	}
+
     
     @Override
     public boolean _Add(Enfant e) {
-        
-            
-          try {
-              st=con.createStatement();
-              String Query = "insert into enfant values";
-              st.executeQuery(Query);
-              st.close();
-              con.close();
-              return true;
-           }catch(SQLException ex){ System.out.println("connexion non établit KEKW") ; return false; }
+          
+          try
+		{
+			preparedStatement = assistant.prepareStatement("INSERT INTO articles(titre, prix, stock, categorie, fournisseur, description, photo) VALUES(?, ?, ?, ?, ?, ?, ?)");
+			
+			preparedStatement.setString(1, e.getNom());
+                        preparedStatement.setString(2, e.getPrenom());
+                        preparedStatement.setString(3, e.getCne());
+                        preparedStatement.setString(4, e.getEmail()); 
+                        preparedStatement.setDate(5, new java.sql.Date(e.getDate_naissence().getDate()));
+			
+			
+			preparedStatement.execute();
+			return true;
+		}
+		catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return false;
           
     }
 
