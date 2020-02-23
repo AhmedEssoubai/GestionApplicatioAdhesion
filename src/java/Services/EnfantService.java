@@ -18,10 +18,10 @@ import java.util.logging.Logger;
  *
  * @author Zed
  */
-public class EnfantService implements iServices{
-    Statement st ; 
+public class EnfantService implements iServices<Enfant>{
     
-    public boolean _Add(Connection con,String nom,String prenom,String cne,String email,Date date,String grade,int ID_Famille) {
+    @Override
+    public boolean _Add(Enfant e) {
         
             
           try {
@@ -36,10 +36,10 @@ public class EnfantService implements iServices{
     }
 
     @Override
-    public Enfant _get(Connection con,int id) {
+    public Enfant _get(int id) {
         try {
                 Enfant e1 = null;
-              st=con.createStatement();
+              //st=con.createStatement();
               String Query = "select * from enfant where id="+id;
               ResultSet res = st.executeQuery(Query);
               
@@ -49,7 +49,7 @@ public class EnfantService implements iServices{
                 Date date_naissence = new SimpleDateFormat("dd/MM/yyyy").parse(res.getString("date_naissence"));
                  e1 = new Enfant(id,res.getString("nom"),res.getString("prenom"),res.getString("cne"),res.getString("email"),date_naissence,res.getString("grade"),res.getInt("ID_Famille"));
                 st.close();
-                con.close();
+                //con.close();
                 
             }      //
              return e1;
@@ -60,31 +60,33 @@ public class EnfantService implements iServices{
     }
 
     @Override
-    public ArrayList<Object> _getAll(Connection con) {
+    public ArrayList<Enfant> _getAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean _delete(Connection con,Object T) {
+    public boolean _delete(Enfant T) {
         try {
-              st=con.createStatement();
+              //st=con.createStatement();
               String Query = "delete from enfant values";
               st.executeQuery(Query);
               st.close();
-              con.close();
+              //con.close();
               return true;
            }catch(SQLException ex){ System.out.println("connexion non établit KEKW") ; return false; }
     }
 
+    
+
     @Override
-    public boolean _update(Connection con,int id) {
+    public boolean _update(int id,Enfant obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public boolean _Add(Connection con) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+   
+
+    
 
     
     
