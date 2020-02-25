@@ -9,7 +9,7 @@ package Models;
  *
  * @author Zed
  */
-public class Tuteur {
+public class Parents {
     private int ID;
     private String prenom;
     private String nom;
@@ -19,7 +19,7 @@ public class Tuteur {
     private String profession;
     private int ID_famille;
 
-    public Tuteur(String firstname, String lastname, String cin, int phone, String email, String job) {
+    public Parents(String firstname, String lastname, String cin, int phone, String email, String job) {
         this.prenom = firstname;
         this.nom = lastname;
         this.cin = cin;
@@ -31,7 +31,7 @@ public class Tuteur {
 
     
 
-    public Tuteur(int ID, String prenom, String nom, String cin, int Tel, String email, String profession) {
+    public Parents(int ID, String prenom, String nom, String cin, int Tel, String email, String profession) {
         this.ID = ID;
         this.prenom = prenom;
         this.nom = nom;

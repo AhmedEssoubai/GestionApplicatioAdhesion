@@ -16,32 +16,33 @@ public class Enfant {
     private int ID;
     private String nom;
     private String prenom;
-    private String cne;
-    private String email;
+    private String cne; 
     private Date date_naissence;
     private String grade;
+    private String Assurance;
     private int ID_famille;
 
-    public Enfant(int ID, String nom, String prenom, String cne, String email, Date date_naissence, String grade, int ID_famille) {
+    public Enfant(int ID, String nom, String prenom, String cne,Date date_naissence, String grade,String Assurance, int ID_famille) {
         this.ID = ID;
         this.nom = nom;
         this.prenom = prenom;
         this.cne = cne;
-        this.email = email;
         this.date_naissence = date_naissence;
         this.grade = grade;
+        this.Assurance=Assurance;
         this.ID_famille = ID_famille;
     }
 
+
    
 
-    public Enfant(String nom, String prenom, String cne, String email, Date date_naissence, String grade) {
+    public Enfant(String nom, String prenom, String cne, String email, Date date_naissence, String grade,String Assurance) {
         this.nom = nom;
         this.prenom = prenom;
         this.cne = cne;
-        this.email = email;
         this.date_naissence = date_naissence;
         this.grade = grade;
+        this.Assurance=Assurance;
     }
 
     public int getID_famille() {
@@ -69,9 +70,7 @@ public class Enfant {
         return cne;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    
 
     public Date getDate_naissence() {
         return date_naissence;
@@ -80,7 +79,9 @@ public class Enfant {
     public String getGrade() {
         return grade;
     }
-
+    public String getAssurance() {
+        return Assurance;
+    }
     public void setID(int ID) {
         this.ID = ID;
     }
@@ -97,9 +98,7 @@ public class Enfant {
         this.cne = cne;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  
 
     public void setDate_naissence(Date date_naissence) {
         this.date_naissence = date_naissence;
@@ -110,6 +109,11 @@ public class Enfant {
     }
     
     
+   
+
+    public void setAssurance(String Assurance) {
+        this.Assurance = Assurance;
+    }
 
     
     

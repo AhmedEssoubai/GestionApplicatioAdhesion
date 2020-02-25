@@ -34,15 +34,14 @@ public class EnfantService implements iServices<Enfant>{
           
           try
 		{
-			preparedStatement = assistant.prepareStatement("INSERT INTO articles(titre, prix, stock, categorie, fournisseur, description, photo) VALUES(?, ?, ?, ?, ?, ?, ?)");
-			
-			preparedStatement.setString(1, e.getNom());
-                        preparedStatement.setString(2, e.getPrenom());
+			preparedStatement = assistant.prepareStatement("INSERT INTO ENFANT(id,NOM,PRENOM,CNE,DATE_NAISSENCE,GRADE,ASSURANCE,ID_FAMILLE)VALUES(?,?,?,?,?,?,?)");	
+			preparedStatement.setString(1, e.getPrenom());
+                        preparedStatement.setString(2, e.getNom());
                         preparedStatement.setString(3, e.getCne());
-                        preparedStatement.setString(4, e.getEmail()); 
-                        preparedStatement.setDate(5, new java.sql.Date(e.getDate_naissence().getDate()));
-			
-			
+                        preparedStatement.setDate(4,new java.sql.Date(e.getDate_naissence().getDate())); 
+			preparedStatement.setString(5, e.getGrade());
+                        preparedStatement.setString(6, e.getAssurance());
+			preparedStatement.setInt(7, e.getID_famille());
 			preparedStatement.execute();
 			return true;
 		}
@@ -55,43 +54,62 @@ public class EnfantService implements iServices<Enfant>{
 
     @Override
     public Enfant _get(int id) {
-        try {
-                Enfant e1 = null;
-              //st=con.createStatement();
-              String Query = "select * from enfant where id="+id;
-              ResultSet res = st.executeQuery(Query);
-              
-               if(res.next())
-            {
-               
-                Date date_naissence = new SimpleDateFormat("dd/MM/yyyy").parse(res.getString("date_naissence"));
-                 e1 = new Enfant(id,res.getString("nom"),res.getString("prenom"),res.getString("cne"),res.getString("email"),date_naissence,res.getString("grade"),res.getInt("ID_Famille"));
-                st.close();
-                //con.close();
-                
-            }      //
-             return e1;
-           }catch(SQLException ex){ System.out.println("connexion non établit") ;  } 
-            catch (ParseException ex) {Logger.getLogger(EnfantService.class.getName()).log(Level.SEVERE, null, ex);}
-            
-             return null;
+        Enfant enfant = null;
+		try
+		{
+			preparedStatement = assistant.prepareStatement("SELECT * FROM ENFANTS WHERE id = ?");
+			
+			preparedStatement.setInt(1, id);
+			
+			ResultSet result = preparedStatement.executeQuery();
+			
+			if (result.next())
+			{
+				enfant = new Enfant(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getDate(5), result.getString(6), result.getString(7), result.getInt(8));
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return enfant;
     }
 
     @Override
     public ArrayList<Enfant> _getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Enfant> result_list= new ArrayList<Enfant>();
+        try
+		{
+			
+			
+			
+			
+			ResultSet result = assistant.createStatement().executeQuery("SELECT * FROM ENFANTS ");
+			
+			while (result.next())
+			{
+				result_list.add(new Enfant(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getDate(5), result.getString(6), result.getString(7), result.getInt(8)));
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+        return result_list;
     }
 
     @Override
     public boolean _delete(Enfant T) {
-        try {
-              //st=con.createStatement();
-              String Query = "delete from enfant values";
-              st.executeQuery(Query);
-              st.close();
-              //con.close();
-              return true;
-           }catch(SQLException ex){ System.out.println("connexion non établit KEKW") ; return false; }
+                 try
+		{
+			preparedStatement = assistant.prepareStatement("DELETE FROM articles WHERE id = ?");
+			preparedStatement.setInt(1, T.getID());
+			preparedStatement.execute();
+                        //enfant should be deleted from family's arraylist 
+			return true;
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
     }
 
     

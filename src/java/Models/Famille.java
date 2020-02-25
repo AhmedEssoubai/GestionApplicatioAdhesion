@@ -14,14 +14,14 @@ import java.util.ArrayList;
 public class Famille {
     private int ID_famille;
     private ArrayList<Enfant> ListEnfants;
-    private ArrayList<Tuteur> ListTuteurs;
+    private ArrayList<Parents> ListTuteurs;
     
-    public Famille(ArrayList<Enfant> ListEnfants, ArrayList<Tuteur> ListTuteurs) {
+    public Famille(ArrayList<Enfant> ListEnfants, ArrayList<Parents> ListTuteurs) {
         this.ListEnfants = ListEnfants;
         this.ListTuteurs = ListTuteurs;
     }
 
-    public Famille(int ID_famille, ArrayList<Enfant> ListEnfants, ArrayList<Tuteur> ListTuteurs) {
+    public Famille(int ID_famille, ArrayList<Enfant> ListEnfants, ArrayList<Parents> ListTuteurs) {
         this.ID_famille = ID_famille;
         this.ListEnfants = ListEnfants;
         this.ListTuteurs = ListTuteurs;
@@ -38,7 +38,7 @@ public class Famille {
         return ListEnfants;
     }
 
-    public ArrayList<Tuteur> getListTuteurs() {
+    public ArrayList<Parents> getListTuteurs() {
         return ListTuteurs;
     }
 
@@ -50,7 +50,7 @@ public class Famille {
         this.ListEnfants = ListEnfants;
     }
 
-    public void setListTuteurs(ArrayList<Tuteur> ListTuteurs) {
+    public void setListTuteurs(ArrayList<Parents> ListTuteurs) {
         this.ListTuteurs = ListTuteurs;
     }
 
@@ -62,10 +62,10 @@ public class Famille {
         this.ListEnfants.remove(E);
     }
     
-       public Tuteur rechercher_Tuteur(int id){
+       public Parents rechercher_Tuteur(int id){
         return this.ListTuteurs.get(id);
     }
-    public void delete_Tut(Tuteur T){
+    public void delete_Tut(Parents T){
         T.setID_famille(0);
         this.ListTuteurs.remove(T);
     }
