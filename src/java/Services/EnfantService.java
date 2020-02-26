@@ -8,12 +8,8 @@ package Services;
 import Models.*;
 import DbContexte.*;
 import java.sql.*;
-import java.text.ParseException;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -34,9 +30,9 @@ public class EnfantService implements iServices<Enfant>{
           
           try
 		{
-			preparedStatement = assistant.prepareStatement("INSERT INTO ENFANT(id,NOM,PRENOM,CNE,DATE_NAISSENCE,GRADE,ASSURANCE,ID_FAMILLE)VALUES(?,?,?,?,?,?,?)");	
-			preparedStatement.setString(1, e.getPrenom());
-                        preparedStatement.setString(2, e.getNom());
+			preparedStatement = assistant.prepareStatement("INSERT INTO ENFANTS(NOM,PRENOM,CNE,DATE_NAISSENCE,GRADE,ASSURANCE,ID_FAMILLE)VALUES(?,?,?,?,?,?,?)");	
+			preparedStatement.setString(1, e.getNom());
+                        preparedStatement.setString(2, e.getPrenom());
                         preparedStatement.setString(3, e.getCne());
                         preparedStatement.setDate(4,new java.sql.Date(e.getDate_naissence().getDate())); 
 			preparedStatement.setString(5, e.getGrade());
@@ -95,15 +91,43 @@ public class EnfantService implements iServices<Enfant>{
 		}
         return result_list;
     }
+        public ArrayList<Enfant> _getAll_byFamily(int ID_Famille) {
+        ArrayList<Enfant> result_list= new ArrayList<Enfant>();
+        try
+		{
+			
+			
+			preparedStatement = assistant.prepareStatement("SELECT * FROM ENFANTS WHERE ID_FAMILLE=?");
+                        preparedStatement.setInt(1, ID_Famille);
+			
+			ResultSet result = preparedStatement.executeQuery();
+			
+			while (result.next())
+			{
+				result_list.add(new Enfant(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getDate(5), result.getString(6), result.getString(7), result.getInt(8)));
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+        return result_list;
+    }
 
     @Override
     public boolean _delete(Enfant T) {
                  try
 		{
-			preparedStatement = assistant.prepareStatement("DELETE FROM articles WHERE id = ?");
+			preparedStatement = assistant.prepareStatement("DELETE FROM ENFANTS WHERE id = ?");
 			preparedStatement.setInt(1, T.getID());
 			preparedStatement.execute();
                         //enfant should be deleted from family's arraylist 
+                        try{ 
+                            FamillieService e = null;
+                            Famille myfamily = e._get(T.getID_famille());
+                                myfamily.delete_enf(T);
+                                }catch(Exception e){
+                            System.out.println(e.getMessage());
+                                    } 
 			return true;
 		}
 		catch (SQLException e) {
@@ -116,8 +140,26 @@ public class EnfantService implements iServices<Enfant>{
 
     @Override
     public boolean _update(int id,Enfant obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+ try
+		{
+			preparedStatement = assistant.prepareStatement("UPDATE ENFANTS SET NOM=?,PRENOM=?,CNE=?,DATE_NAISSENCE=?,GRADE=?,ASSURANCE=?,ID_FAMILLE=? WHERE id=?");	
+			
+                        preparedStatement.setString(1, obj.getNom());
+                        preparedStatement.setString(2, obj.getPrenom());
+                        preparedStatement.setString(3, obj.getCne());
+                        preparedStatement.setDate(4,new java.sql.Date(obj.getDate_naissence().getDate())); 
+			preparedStatement.setString(5, obj.getGrade());
+                        preparedStatement.setString(6, obj.getAssurance());
+			preparedStatement.setInt(7, obj.getID_famille());
+                        preparedStatement.setString(8, obj.getPrenom());
+			preparedStatement.execute();
+			return true;
+		}
+		catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return false;
+              }
 
     
    

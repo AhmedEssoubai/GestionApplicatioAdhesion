@@ -14,12 +14,12 @@ public class Parents {
     private String prenom;
     private String nom;
     private String cin;
-    private int Tel;
+    private String Tel;
     private String email;
     private String profession;
     private int ID_famille;
 
-    public Parents(String firstname, String lastname, String cin, int phone, String email, String job) {
+    public Parents(String firstname, String lastname, String cin, String phone, String email, String job) {
         this.prenom = firstname;
         this.nom = lastname;
         this.cin = cin;
@@ -31,7 +31,7 @@ public class Parents {
 
     
 
-    public Parents(int ID, String prenom, String nom, String cin, int Tel, String email, String profession) {
+    public Parents(int ID, String prenom, String nom, String cin, String Tel, String email, String profession) {
         this.ID = ID;
         this.prenom = prenom;
         this.nom = nom;
@@ -57,7 +57,7 @@ public class Parents {
         return cin;
     }
 
-    public int getTel() {
+    public String getTel() {
         return Tel;
     }
 
@@ -89,7 +89,7 @@ public class Parents {
         this.cin = cin;
     }
 
-    public void setTel(int Tel) {
+    public void setTel(String Tel) {
         this.Tel = Tel;
     }
 

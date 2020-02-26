@@ -13,16 +13,22 @@ import java.util.ArrayList;
  */
 public class Famille {
     private int ID_famille;
+    private int ID_UTILISATEUR,ID_TUTEUR;
     private ArrayList<Enfant> ListEnfants;
     private ArrayList<Parents> ListTuteurs;
     
     public Famille(ArrayList<Enfant> ListEnfants, ArrayList<Parents> ListTuteurs) {
+        
         this.ListEnfants = ListEnfants;
         this.ListTuteurs = ListTuteurs;
     }
 
-    public Famille(int ID_famille, ArrayList<Enfant> ListEnfants, ArrayList<Parents> ListTuteurs) {
+    
+
+    public Famille(int ID_famille,int ID_UTILISATEUR,int ID_TUTEUR ,ArrayList<Enfant> ListEnfants, ArrayList<Parents> ListTuteurs) {
         this.ID_famille = ID_famille;
+        this.ID_UTILISATEUR=ID_UTILISATEUR;
+        this.ID_TUTEUR=ID_TUTEUR;
         this.ListEnfants = ListEnfants;
         this.ListTuteurs = ListTuteurs;
     }
@@ -41,7 +47,22 @@ public class Famille {
     public ArrayList<Parents> getListTuteurs() {
         return ListTuteurs;
     }
+    public int getID_UTILISATEUR() {
+        return ID_UTILISATEUR;
+    }
 
+    public int getID_TUTEUR() {
+        return ID_TUTEUR;
+    }
+
+    public void setID_UTILISATEUR(int ID_UTILISATEUR) {
+        this.ID_UTILISATEUR = ID_UTILISATEUR;
+    }
+
+    public void setID_TUTEUR(int ID_TUTEUR) {
+        this.ID_TUTEUR = ID_TUTEUR;
+    }
+    
     public void setID_famille(int ID_famille) {
         this.ID_famille = ID_famille;
     }
