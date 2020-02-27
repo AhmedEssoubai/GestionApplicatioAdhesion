@@ -51,7 +51,7 @@ public class FamillieService implements iServices<Famille>{
 			if (result.next())
                         {
                             EnfantService enService = new EnfantService();
-                            ParentService ParentService ;
+                            ParentService ParentService = new ParentService() ;
 			      famille = new Famille(result.getInt(1),result.getInt(2) ,result.getInt(3) , enService._getAll_byFamily(ID_Famille), ParentService._getAll_byFamily(ID_Famille));
                          }
 		}
@@ -100,7 +100,29 @@ public class FamillieService implements iServices<Famille>{
 
     @Override
     public boolean _delete(Famille obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+		{
+			preparedStatement = assistant.prepareStatement("DELETE FROM FAMILLES WHERE NUM_ADHESION= ?");
+			preparedStatement.setInt(1, obj.getID_famille());
+			
+                        EnfantService e = new EnfantService();
+                        ParentService p = new ParentService();
+                        obj.delete_Tut(p._get(obj.getID_TUTEUR()));
+                        for(Enfant enf : e._getAll_byFamily(obj.getID_famille())){e._delete(enf);}
+                        preparedStatement.execute();
+                         
+			return true;
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException ex) {
+            Logger.getLogger(FamillieService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(FamillieService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(FamillieService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+		return false;
     }
 
     @Override

@@ -31,7 +31,7 @@ public class Parents {
 
     
 
-    public Parents(int ID, String prenom, String nom, String cin, String Tel, String email, String profession) {
+    public Parents(int ID, String prenom, String nom, String cin, String Tel, String email, String profession,int ID_famille) {
         this.ID = ID;
         this.prenom = prenom;
         this.nom = nom;
@@ -39,6 +39,8 @@ public class Parents {
         this.Tel = Tel;
         this.email = email;
         this.profession = profession;
+        this.ID_famille=ID_famille;
+        
     }
 
     public int getID() {
