@@ -38,7 +38,7 @@ try
 
     @Override
     public Utilisateur _get(int id) {
-        Utilisateur utilisateur = null;
+        
 		try
 		{
 			preparedStatement = assistant.prepareStatement("SELECT * FROM UTILISATEURS WHERE id = ?");
@@ -49,13 +49,33 @@ try
 			
 			if (result.next())
 			{
-				utilisateur = new Utilisateur(result.getInt(1), result.getString(2), result.getString(3));
+				return new Utilisateur(result.getInt(1), result.getString(2), result.getString(3));
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return utilisateur;
+		return null;
+    }
+    public Utilisateur _verify(String email,String password) {
+        
+		try
+		{
+			preparedStatement = assistant.prepareStatement("SELECT * FROM UTILISATEURS WHERE EMAIL = ? AND PASSWORD=?");
+			
+			preparedStatement.setString(1, email);
+			preparedStatement.setString(2, password);
+			ResultSet result = preparedStatement.executeQuery();
+			
+			if (result.next())
+			{
+				return new Utilisateur(result.getInt(1), result.getString(2), result.getString(3));
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
     }
 
     @Override

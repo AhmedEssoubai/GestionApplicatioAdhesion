@@ -20,7 +20,7 @@ databaseName = "g-app-adhesion")
 
 
 public class DBContexte {
-    @Resource(lookup = "jdbc:derby://localhost:1527/g-app-adhesion") 
+     @Resource(lookup = "jdbc:derby://localhost:1527/g-app-adhesion")
     private DataSource data;
     private Connection connexion;
     private static DBContexte assistant;
