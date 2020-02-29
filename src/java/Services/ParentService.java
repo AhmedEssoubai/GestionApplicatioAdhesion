@@ -123,9 +123,11 @@ public class ParentService implements iServices<Parents>{
 			preparedStatement.execute();
                         //enfant should be deleted from family's arraylist 
                         try{ 
-                            FamillieService e = null;
+                            FamillieService e = new FamillieService();
+                            UserService u = new UserService();
                             Famille myfamily = e._get(obj.getID_famille());
                                 myfamily.delete_Tut(obj);
+                            u._delete(u._get(obj.getID()));
                                 }catch(Exception e){
                             System.out.println(e.getMessage());
                                     } 
@@ -151,7 +153,7 @@ public class ParentService implements iServices<Parents>{
 			preparedStatement.setString(5, obj.getEmail());
                         preparedStatement.setString(6, obj.getProfession());
 			preparedStatement.setInt(7, obj.getID_famille());
-                        preparedStatement.setInt(8, obj.getID());
+                        preparedStatement.setInt(8, id);
 			preparedStatement.execute();
 			return true;
 		}

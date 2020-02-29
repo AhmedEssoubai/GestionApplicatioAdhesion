@@ -17,29 +17,100 @@ import java.util.ArrayList;
 public class UserService implements iServices<Utilisateur>{
     private DBContexte assistant;
     private PreparedStatement preparedStatement;
+    
+    public UserService() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+		assistant = DBContexte.getAssistant();
+	}
     @Override
     public boolean _Add(Utilisateur obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+try
+		{
+			preparedStatement = assistant.prepareStatement("INSERT INTO UTILISATEURS(EMAIL,PASSWORD)VALUES(?,?)");	
+			preparedStatement.setString(1, obj.getEmail());
+                        preparedStatement.setString(2, obj.getPassword());
+			preparedStatement.execute();
+			return true;
+		}
+		catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return false;    }
 
     @Override
     public Utilisateur _get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Utilisateur utilisateur = null;
+		try
+		{
+			preparedStatement = assistant.prepareStatement("SELECT * FROM UTILISATEURS WHERE id = ?");
+			
+			preparedStatement.setInt(1, id);
+			
+			ResultSet result = preparedStatement.executeQuery();
+			
+			if (result.next())
+			{
+				utilisateur = new Utilisateur(result.getInt(1), result.getString(2), result.getString(3));
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return utilisateur;
     }
 
     @Override
     public ArrayList<Utilisateur> _getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         ArrayList<Utilisateur> result_list= new ArrayList<Utilisateur>();
+        try
+		{
+			ResultSet result = assistant.createStatement().executeQuery("SELECT * FROM UTILISATEURS ");
+			
+			while (result.next())
+			{
+				result_list.add(new Utilisateur(result.getInt(1), result.getString(2), result.getString(3)));
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+        return result_list;
+    
     }
 
     @Override
     public boolean _delete(Utilisateur obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+		{
+			preparedStatement = assistant.prepareStatement("DELETE FROM UTILISATEURS WHERE id = ?");
+			preparedStatement.setInt(1, obj.getID());
+			preparedStatement.execute();
+                        
+                        return true;
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
     }
 
     @Override
     public boolean _update(int id, Utilisateur obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+		{
+			preparedStatement = assistant.prepareStatement("UPDATE UTILISATEURS SET EMAIL=?,PASSWORD=? WHERE id=?");	
+			
+                        preparedStatement.setString(1, obj.getEmail());
+                        preparedStatement.setString(2, obj.getPassword());
+                        preparedStatement.setInt(3, id);
+			preparedStatement.execute();
+			return true;
+		}
+		catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return false;
+    
+    
     }
     /*public ArrayList<Utilisateur> _getAll_byFamily(int ID_Famille) {
         ArrayList<Utilisateur> result_list= new ArrayList<Enfant>();

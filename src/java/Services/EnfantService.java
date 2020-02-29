@@ -151,7 +151,7 @@ public class EnfantService implements iServices<Enfant>{
 			preparedStatement.setString(5, obj.getGrade());
                         preparedStatement.setString(6, obj.getAssurance());
 			preparedStatement.setInt(7, obj.getID_famille());
-                        preparedStatement.setString(8, obj.getPrenom());
+                        preparedStatement.setInt(8, id);
 			preparedStatement.execute();
 			return true;
 		}

@@ -127,7 +127,21 @@ public class FamillieService implements iServices<Famille>{
 
     @Override
     public boolean _update(int id, Famille obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+		{
+			preparedStatement = assistant.prepareStatement("UPDATE FAMILLS SET ID_UTILISATEUR=?,ID_TUTEUR=? WHERE NUM_ADHESION= ?");	
+			
+                        preparedStatement.setInt(1, obj.getID_UTILISATEUR());
+                        preparedStatement.setInt(2, obj.getID_TUTEUR());
+                        preparedStatement.setInt(3, id);
+			preparedStatement.execute();
+			return true;
+		}
+		catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return false;
+    
     }
     
 }
