@@ -5,6 +5,7 @@
  */
 package DbContexte;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -12,22 +13,18 @@ import java.sql.Statement;
 import javax.annotation.sql.DataSourceDefinition;
 import javax.annotation.Resource;
 
-@DataSourceDefinition(name = "jdbc:derby://localhost:1527/g-app-adhesion",   
-className = "org.apache.derby.jdbc.ClientDataSource",   
-portNumber = 1527,   
-serverName = "localhost",   
-databaseName = "g-app-adhesion")
+
 
 
 public class DBContexte {
-     @Resource(lookup = "jdbc:derby://localhost:1527/g-app-adhesion")
+    @Resource(lookup = "jdbc:derby://localhost:1527/g-app-adhesion")
     private DataSource data;
-    private Connection connexion;
+    private Connection con;
     private static DBContexte assistant;
     
     private DBContexte() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException
 	{
-        connexion = data.getConnection("root","123456");
+        con = DriverManager.getConnection("jdbc:derby://localhost:1527/g-app-adhesion","root","123456");
 	}
     public static DBContexte getAssistant() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException
 	{
@@ -38,27 +35,18 @@ public class DBContexte {
 	
 	public PreparedStatement prepareStatement(String sql) throws SQLException
 	{
-		return connexion.prepareStatement(sql);
+		return con.prepareStatement(sql);
 	}
 	
 	public PreparedStatement prepareStatement(String sql, int statement) throws SQLException
 	{
-		return connexion.prepareStatement(sql, statement);
+		return con.prepareStatement(sql, statement);
 	}
 	
 	public Statement createStatement() throws SQLException
 	{
-		return connexion.createStatement();
+		return con.createStatement();
 	}
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  
 }
