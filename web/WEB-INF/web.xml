@@ -4,6 +4,30 @@
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	 version="3.1">
+    <servlet>
+    <servlet-name>accueil</servlet-name>
+    <jsp-file>/WEB-INF/views/accueil.jsp</jsp-file>
+    </servlet>
+    <servlet>
+    <servlet-name>Login</servlet-name>
+    <jsp-file>/WEB-INF/views/connecter.jsp</jsp-file>
+    </servlet>
+    <servlet>
+    <servlet-name>Sign</servlet-name>
+    <jsp-file>/WEB-INF/views/inscrire.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>accueil</servlet-name>
+    <url-pattern>/Accueil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>Sign</servlet-name>
+    <url-pattern>/Inscrire</url-pattern>
+    </servlet-mapping>
     <error-page>
       <error-code>500</error-code>
       <location>/WEB-INF/views/error/error-500.jsp</location>

@@ -13,17 +13,17 @@
         <div class="container mw-100">
             <div class="row my-5">
                 <div class="col-sm-4 offset-sm-4 p-5 my-5 bg-white shadow">
-                    <form class="py-5" method="POST" action="#">
+                    <form class="py-5" method="POST" action="Connect">
                         <h2 class="mb-5 pb-3">
                             Se connecter
                         </h2>
                         <div class="form-groupe my-4">
                             <label class="control-label" for="email">Email:</label>
-                            <input id="email" type="email" value="${param.email }" class="form-control" placeholder="Entrer votre email" />
+                            <input id="email" type="email" name="email" value="${param.email }" class="form-control" placeholder="Entrer votre email" />
                         </div>
                         <div class="form-groupe my-4">
                             <label class="control-label" for="motdepass">Mot de passe:</label>
-                            <input id="motdepass" type="password" class="form-control" placeholder="Entrer votre mot de passe" />
+                            <input id="motdepass" name="password" type="password" class="form-control" placeholder="Entrer votre mot de passe" />
                         </div>
                         <c:if test='${requestScope.err != null}'>
                         	<span class="lead text-danger">Mot de passe ou e-mail incorrect</span>
@@ -43,7 +43,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h5 class="text-secondary">Vous n'avez pas de compte ? veuillez s'inscrire ici : <a href="#" class="_link">S'inscrire</a></h5>
+                    <h5 class="text-secondary">Vous n'avez pas de compte ? veuillez s'inscrire ici : <a href="Login" class="_link">S'inscrire</a></h5>
                 </div>
             </div>
         </div>

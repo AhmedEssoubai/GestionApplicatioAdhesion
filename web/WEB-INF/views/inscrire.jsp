@@ -78,7 +78,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h5 class="text-secondary">Si vous possédez déjà un compte. <a href="login.html" class="_link">Se connecter</a></h5>
+                    <h5 class="text-secondary">Si vous possédez déjà un compte. <a href="Login" class="_link">Se connecter</a></h5>
                 </div>
             </div>
         </div>

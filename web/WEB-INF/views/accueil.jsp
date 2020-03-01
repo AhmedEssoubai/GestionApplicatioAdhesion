@@ -20,7 +20,7 @@
                         avec Bisd Community vous pouvez partager tous ce que vous voulez avec les autres.
                     </p>
                     <div class="mt-5">
-                        <a href="login.html" class="btn btn-sec btn-lg px-5 rounded-pill">
+                        <a href="Inscrire" class="btn btn-sec btn-lg px-5 rounded-pill">
                             S'inscrire
                         </a>
                     </div>
