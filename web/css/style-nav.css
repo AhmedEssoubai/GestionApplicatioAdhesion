@@ -144,3 +144,39 @@
 .hd{
     display: none !important;
 }
+
+.icon-g{
+    cursor: pointer;
+    color: rgba(74, 217, 145, 0.5) !important;
+    font-size: 1.2em;
+}
+.icon-g:hover{
+    color: rgba(74, 217, 145, 1) !important;
+}
+
+.icon-r{
+    cursor: pointer;
+    color: rgba(255, 101, 101, 0.5) !important;
+    font-size: 1.2em;
+}
+.icon-r:hover{
+    color: rgba(255, 101, 101, 1) !important;
+}
+
+.icon-mute {
+    cursor: pointer;
+    color: rgba(100, 100, 100, 0.5) !important;
+    font-size: 1.2em;
+}
+.icon-mute:hover {
+    color: rgba(100, 100, 100, 1) !important;
+}
+
+.icon-mute-2 {
+    cursor: pointer;
+    color: rgba(100, 100, 100, 0.3) !important;
+    font-size: 1.2em;
+}
+.icon-mute-2:hover {
+    color: rgba(100, 100, 100, 0.8) !important;
+}
