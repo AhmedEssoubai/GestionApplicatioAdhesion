@@ -3,6 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Zed/Documents/GitHub/GestionApplicatioAdhesion/src/java/Controllers/ConnectionController.java</file>
+            <file>file:/C:/Users/Zed/Documents/GitHub/GestionApplicatioAdhesion/src/java/Services/UserService.java</file>
+            <file>file:/C:/Users/Zed/Documents/GitHub/GestionApplicatioAdhesion/src/java/DbContexte/DBContexte.java</file>
+            <file>file:/C:/Users/Zed/Documents/GitHub/GestionApplicatioAdhesion/src/java/Controllers/PDFexport.java</file>
             <file>file:/C:/Users/ahmed/Documents/NetBeansProjects/GestionApplicatioAdhesion/web/WEB-INF/fragments/footer.jspf</file>
             <file>file:/C:/Users/ahmed/Documents/NetBeansProjects/GestionApplicatioAdhesion/web/WEB-INF/fragments/navbar.jspf</file>
         </group>
