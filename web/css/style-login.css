@@ -1,0 +1,34 @@
+#login {
+    background-image: url("../img/bg.jpg");
+    background-size: cover;
+    min-height: 800px;
+    overflow: hidden !important;
+    padding-bottom: 0% !important;
+    margin-bottom: 0%;
+}
+
+#dd {
+    display: block !important;
+    max-width: 100% !important;
+}
+
+#login .primary-overlay {
+    background-color: rgba(52, 152, 219, 0.8);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#forme {
+    min-height: 800px;
+}
+
+input[type="radio"] {
+    position: fixed;
+    opacity: 0;
+}
+.radio-label {
+    color: rgb(66, 70, 73, 0.5);
+    cursor: pointer;
+}

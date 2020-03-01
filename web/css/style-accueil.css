@@ -1,0 +1,45 @@
+/*
+    COLORS:
+        --- Primary
+        Primary : 238, 77, 77 | #ee4d4d
+        Primary-soft : 241, 113, 113 | #f17171
+        Primary-dark : 214, 69, 69 | #d64545
+        --- Secondary
+        Primary : 139, 152, 166 | #8b98a6
+        Primary-soft : 162, 173, 184 | #a2adb8
+        Primary-dark : 125, 137, 149 | #7d8995
+        --- Attention
+        Primary : 139, 201, 77 | #8bc94d
+        Primary-soft : 162, 212, 113 | #a2d471
+        Primary-dark : 125, 181, 69 | #7db545
+        --- Light
+        #f9f9f9
+*/
+
+#welcome{
+    position: relative;
+    background-image: url('../img/bg.jpg');
+    background: linear-gradient(to bottom, rgba(238, 77, 77, 0.6) 0%, rgba(238, 77, 77, 0.9) 100%), url("../img/bg.jpg");
+    /*background-size: cover;
+    min-height: 600px;*/
+    background-size: cover;
+    min-height: 90vh;
+}
+
+.text-primary{
+    color: #ee4d4d !important;
+}
+
+.btn-outline-secondary:hover{
+    background-color: #8b98a6 !important;
+    border-color: #8b98a6 !important;
+}
+
+#properties .card{
+    background-color: transparent;
+    border: 0;
+}
+
+#properties .card-text{
+    opacity: 0.6;
+}

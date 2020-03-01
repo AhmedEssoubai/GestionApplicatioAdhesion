@@ -1,0 +1,146 @@
+.navbar {
+    box-shadow: 2px 2px 5px rgba(107, 107, 107, 0.4);
+    opacity: 0.9;
+    background: #fff; 
+}
+
+.navbar .nav-item {
+    font-size: 1rem;
+    padding-right: 20px; 
+}
+
+.btn-primary{
+    background-color: #ee4d4d !important;
+    border-color: #ee4d4d !important;
+}
+
+.btn-primary:hover{
+    background-color: #f17171 !important;
+    border-color: #f17171 !important;
+}
+
+.navbar .btn-outline-secondary{
+    background-color: transparent !important;
+    border-color: #8b98a6 !important;
+    color: #8b98a6 !important;
+}
+
+.navbar .btn-outline-secondary:hover{
+    background-color: transparent !important;
+    border-color: #a2adb8 !important;
+    color: #a2adb8 !important;
+}
+
+._link{
+    color: #ee4d4d;
+}
+
+._link:hover{
+    color: #f17171;
+    text-decoration: none;
+}
+
+._sec_link{
+    color: #8b98a6;
+    font-size: 0.8em;
+}
+
+._sec_link:hover{
+    color: #a2adb8;
+    text-decoration: none;
+}
+
+.bg-gray{
+    background-color: rgba(247, 248, 250, 1);
+}
+
+.line{
+    height: 1px;
+    background-color: rgba(50, 50, 55, 0.3);
+    /*border-bottom: 1px solid rgba(50, 50, 55, 0.6)*/
+    box-shadow: 0 1px 5px rgba(50, 50, 55, 0.2);
+}
+
+.errorMessage{
+	color: rgb(236, 82, 82);
+}
+
+.hiddedElement{
+    position:fixed;
+    opacity:0;
+}
+
+#searchButton{
+    display: none;
+}
+
+.list-group a{
+    color: rgba(100, 100, 100) !important;
+}
+
+.list-group a:hover{
+    color: rgba(150, 150, 150) !important;
+    text-decoration: none;
+}
+
+.list-group .active{
+    color: #ee4d4d !important;
+    font-weight: bold;
+    background-color: transparent !important;
+}
+
+#dml_profil{
+    height: 50px;
+    width: 50px;
+}
+
+.avatare{
+    height: 48px;
+    width: 48px;
+}
+
+.com-avatare{
+    height: 64px;
+    width: 64px;
+}
+
+.icon{
+    color: #8b98a6 !important;
+    font-size: 1.6em;
+}
+
+.icon .active{
+    color: #ee4d4d !important;
+}
+
+.icon:hover{
+    color: #a2adb8 !important;
+}
+
+.icon .active:hover{
+    color: #f17171 !important;
+}
+
+.groupe-icon{
+    width: 30px;
+}
+
+.bg-sec{
+    background-color: #f9f9f9;
+}
+
+.btn-sec{
+    background-color: #8bc94d !important;
+    border-color: #8bc94d !important;
+    color: #fff !important;
+}
+
+.btn-sec:hover{
+    background-color: #a2d471 !important;
+    border-color: #a2d471 !important;
+    color: #fff !important;
+}
+
+.hd{
+    display: none !important;
+}
