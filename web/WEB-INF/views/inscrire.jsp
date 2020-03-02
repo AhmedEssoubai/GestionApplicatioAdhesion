@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/style-login.css"/>
 </head>
 <body>
+    <%@ include file="/WEB-INF/fragments/navbar.jspf" %>
     <section id="login">
         <div class="container mw-100">
             <div class="row my-5">
