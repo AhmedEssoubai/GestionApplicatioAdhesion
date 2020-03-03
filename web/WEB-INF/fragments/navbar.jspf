@@ -12,7 +12,7 @@
 <nav class="navbar navbar-expand-lg navbar-light navbar-toggleable-sm">
     <div class="container">
         <div class="navbar-brand">
-            <a href="accueil.html">
+            <a href="Accueil">
                 <img src="img/logo.png" class="img-fluid" width="160px" />
             </a>
         </div>
@@ -23,10 +23,10 @@
             <c:choose>
     		<c:when test="${sessionScope.utilisateur == null }">
                     <div class="ml-auto">
-                        <a href="#" class="btn btn-outline-secondary navbar-btn mr-2">
+                        <a href="Login" class="btn btn-outline-secondary navbar-btn mr-2">
                             Se connecter
                         </a>
-                        <a href="#" class="btn btn-primary navbar-btn">
+                        <a href="Inscrire" class="btn btn-primary navbar-btn">
                             S'inscrire
                         </a>
                     </div>

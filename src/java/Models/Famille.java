@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Famille {
     private int ID_famille;
-    private int ID_UTILISATEUR,ID_TUTEUR;
+    private int ID_UTILISATEUR,ID_TUTEUR,RECEVOIR_OPT=0;
     private ArrayList<Enfant> ListEnfants;
     private ArrayList<Parents> ListTuteurs;
     
@@ -25,10 +25,11 @@ public class Famille {
 
     
 
-    public Famille(int ID_famille,int ID_UTILISATEUR,int ID_TUTEUR ,ArrayList<Enfant> ListEnfants, ArrayList<Parents> ListTuteurs) {
+    public Famille(int ID_famille,int ID_UTILISATEUR,int ID_TUTEUR ,int RECEVOIR_OPT ,ArrayList<Enfant> ListEnfants, ArrayList<Parents> ListTuteurs) {
         this.ID_famille = ID_famille;
         this.ID_UTILISATEUR=ID_UTILISATEUR;
         this.ID_TUTEUR=ID_TUTEUR;
+        this.RECEVOIR_OPT=RECEVOIR_OPT;
         this.ListEnfants = ListEnfants;
         this.ListTuteurs = ListTuteurs;
     }
@@ -55,6 +56,10 @@ public class Famille {
         return ID_TUTEUR;
     }
 
+    public int getRECEVOIR_OPT() {
+        return RECEVOIR_OPT;
+    }
+    
     public void setID_UTILISATEUR(int ID_UTILISATEUR) {
         this.ID_UTILISATEUR = ID_UTILISATEUR;
     }
@@ -75,6 +80,10 @@ public class Famille {
         this.ListTuteurs = ListTuteurs;
     }
 
+    public void setRECEVOIR_OPT(int RECEVOIR_OPT) {
+        this.RECEVOIR_OPT = RECEVOIR_OPT;
+    }
+    
     public Enfant rechercher_enf(int id){
         return this.ListEnfants.get(id);
     }

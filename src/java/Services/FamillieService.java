@@ -22,9 +22,10 @@ public class FamillieService implements iServices<Famille>{
     public boolean _Add(Famille obj) {
  try
 		{
-			preparedStatement = assistant.prepareStatement("INSERT INTO FAMILLES(ID_UTILISATEUR,ID_TUTEUR)VALUES(?,?)");	
+			preparedStatement = assistant.prepareStatement("INSERT INTO FAMILLES(ID_UTILISATEUR,ID_TUTEUR)VALUES(?,?,?)");	
 			preparedStatement.setInt(1, obj.getID_UTILISATEUR());
                         preparedStatement.setInt(2, obj.getID_TUTEUR());
+                        preparedStatement.setInt(2, obj.getRECEVOIR_OPT());
 			preparedStatement.execute();
 			return true;
 		}
@@ -52,7 +53,7 @@ public class FamillieService implements iServices<Famille>{
                         {
                             EnfantService enService = new EnfantService();
                             ParentService ParentService = new ParentService() ;
-			      famille = new Famille(result.getInt(1),result.getInt(2) ,result.getInt(3) , enService._getAll_byFamily(ID_Famille), ParentService._getAll_byFamily(ID_Famille));
+			      famille = new Famille(result.getInt(1),result.getInt(2) ,result.getInt(3),result.getInt(4) , enService._getAll_byFamily(ID_Famille), ParentService._getAll_byFamily(ID_Famille));
                          }
 		}
 		catch (SQLException e) {
@@ -80,7 +81,7 @@ public class FamillieService implements iServices<Famille>{
                         {
                             EnfantService enService = new EnfantService();
                             ParentService parentService = null;
-			      list_famille.add(new Famille(result.getInt(1),result.getInt(2) ,result.getInt(3) , enService._getAll_byFamily(result.getInt(1)), null));
+			      list_famille.add(new Famille(result.getInt(1),result.getInt(2) ,result.getInt(3),result.getInt(4) , enService._getAll_byFamily(result.getInt(1)), null));
                          }
 		}
 		catch (SQLException e) {
@@ -129,11 +130,12 @@ public class FamillieService implements iServices<Famille>{
     public boolean _update(int id, Famille obj) {
         try
 		{
-			preparedStatement = assistant.prepareStatement("UPDATE FAMILLS SET ID_UTILISATEUR=?,ID_TUTEUR=? WHERE NUM_ADHESION= ?");	
+			preparedStatement = assistant.prepareStatement("UPDATE FAMILLS SET ID_UTILISATEUR=?,ID_TUTEUR=?,RECEVOIR_OPT=? WHERE NUM_ADHESION= ?");	
 			
                         preparedStatement.setInt(1, obj.getID_UTILISATEUR());
                         preparedStatement.setInt(2, obj.getID_TUTEUR());
-                        preparedStatement.setInt(3, id);
+                        preparedStatement.setInt(3, obj.getRECEVOIR_OPT());
+                        preparedStatement.setInt(4, id);
 			preparedStatement.execute();
 			return true;
 		}

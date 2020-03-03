@@ -16,6 +16,10 @@
     <servlet-name>Sign</servlet-name>
     <jsp-file>/WEB-INF/views/inscrire.jsp</jsp-file>
     </servlet>
+    <servlet>
+    <servlet-name>ajouterenfant</servlet-name>
+    <jsp-file>/WEB-INF/views/famille/ajouter-enfants.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
     <servlet-name>accueil</servlet-name>
     <url-pattern>/Accueil</url-pattern>
@@ -27,6 +31,10 @@
     <servlet-mapping>
     <servlet-name>Sign</servlet-name>
     <url-pattern>/Inscrire</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>ajouterenfant</servlet-name>
+    <url-pattern>/Ajouter</url-pattern>
     </servlet-mapping>
     <error-page>
       <error-code>500</error-code>
