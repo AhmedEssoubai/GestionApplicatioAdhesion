@@ -89,9 +89,7 @@ public class Signin extends HttpServlet {
             String tel=request.getParameter("tel");
             String profession=request.getParameter("profession");
             String recevoir=request.getParameter("recevoir");
-            if(recevoir.equals(null) ){
-                recevoir = "0";
-            }
+            
            // int delegue=Integer.parseInt(request.getParameter("delegue"));
             Parents Pa= new Parents(prenom, nom, cin, tel, email, profession);
             Utilisateur User = new Utilisateur(email, password);

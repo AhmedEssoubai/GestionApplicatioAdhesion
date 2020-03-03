@@ -89,37 +89,9 @@ public class ConnectionController extends HttpServlet {
            if (email != null && password != null)
            {
            utilisateur=(Utilisateur)u._verify(email, password);
-           response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ConnectionController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Wassup user " + utilisateur.getID()+utilisateur.getEmail()+utilisateur.getPassword() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+           response.sendRedirect(request.getContextPath() + "/Ajouter");
         }
-           }else{
-           response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ConnectionController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Somthing wrong i can feel it </h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-       
-           }
-   
-        } catch (ClassNotFoundException ex) {
+           } catch (ClassNotFoundException ex) {
             Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -127,6 +99,11 @@ public class ConnectionController extends HttpServlet {
             Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
+        }{
+           
+       
+           }
+   
         }
         
     }
