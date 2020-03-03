@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Services.*;
-import Models.Parents;
-import Models.Utilisateur;
+import Models.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,7 +80,7 @@ public class Signin extends HttpServlet {
         try {
             ParentService P = new ParentService();
             UserService U = new UserService();
-            
+            FamillieService F = new FamillieService();
             String nom=request.getParameter("nom");
             String prenom=request.getParameter("prenom");
             String cin=request.getParameter("cin");
@@ -89,11 +88,17 @@ public class Signin extends HttpServlet {
             String password=request.getParameter("password");                                       
             String tel=request.getParameter("tel");
             String profession=request.getParameter("profession");
-            int recevoir=Integer.parseInt(request.getParameter("recevoir"));
-            int delegue=Integer.parseInt(request.getParameter("delegue"));
-            
-            
-            
+            String recevoir=request.getParameter("recevoir");
+            if(recevoir.equals(null) ){
+                recevoir = "0";
+            }
+           // int delegue=Integer.parseInt(request.getParameter("delegue"));
+            Parents Pa= new Parents(prenom, nom, cin, tel, email, profession);
+            Utilisateur User = new Utilisateur(email, password);
+            P._Add(Pa);
+            U._Add(User);
+            F._Add(new Famille(User.getID(),Pa.getID(),Integer.parseInt(recevoir)));
+            response.sendRedirect(request.getContextPath() + "/Connect");
             
             
         } catch (ClassNotFoundException ex) {

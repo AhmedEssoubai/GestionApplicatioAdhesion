@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Famille {
     private int ID_famille;
-    private int ID_UTILISATEUR,ID_TUTEUR,RECEVOIR_OPT=0;
+    private int ID_UTILISATEUR,ID_TUTEUR,RECEVOIR_OPT;
     private ArrayList<Enfant> ListEnfants;
     private ArrayList<Parents> ListTuteurs;
     
@@ -26,14 +26,19 @@ public class Famille {
     
 
     public Famille(int ID_famille,int ID_UTILISATEUR,int ID_TUTEUR ,int RECEVOIR_OPT ,ArrayList<Enfant> ListEnfants, ArrayList<Parents> ListTuteurs) {
-        this.ID_famille = ID_famille;
+        this.ID_famille=ID_famille;
         this.ID_UTILISATEUR=ID_UTILISATEUR;
         this.ID_TUTEUR=ID_TUTEUR;
         this.RECEVOIR_OPT=RECEVOIR_OPT;
         this.ListEnfants = ListEnfants;
         this.ListTuteurs = ListTuteurs;
     }
-
+    public Famille(int ID_UTILISATEUR,int ID_TUTEUR ,int RECEVOIR_OPT) {
+        this.ID_UTILISATEUR=ID_UTILISATEUR;
+        this.ID_TUTEUR=ID_TUTEUR;
+        this.RECEVOIR_OPT=RECEVOIR_OPT;
+       
+    }
     public Famille() {
     }
 

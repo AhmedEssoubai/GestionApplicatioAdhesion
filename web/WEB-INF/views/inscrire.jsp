@@ -15,7 +15,7 @@
         <div class="container mw-100">
             <div class="row my-5">
                 <div class="col-sm-4 offset-sm-4 p-5 bg-white shadow">
-                    <form>
+                    <form action="Signin" method="POST">
                         <h2 class="mb-5 pb-3">
                             S'inscrire
                         </h2>
@@ -52,13 +52,13 @@
                             <input id="profession" name="profession" value="${param.profession }" type="text" class="form-control" placeholder="Enrer vote profession" required />
                         </div>
                         <div class="custom-control custom-checkbox my-3">
-                            <input class="custom-control-input" type="checkbox" id="recevoir" value="${param.recevoir }" name="recevoir" checked>
+                            <input class="custom-control-input" type="checkbox" id="recevoir" value="1" name="recevoir" checked>
                             <label class="custom-control-label" for="recevoir">
                                 Je souhaite recevoir les informations concernant l’association
                             </label>
                         </div>
                         <div class="custom-control custom-checkbox my-3">
-                            <input class="custom-control-input" type="checkbox" id="delegue" value="${param.delegue }" name="delegue">
+                            <input class="custom-control-input" type="checkbox" id="delegue" value="1" name="delegue">
                             <label class="custom-control-label" for="delegue">
                                 Je souhaite être parents délégués au conseil d’école
                             </label>

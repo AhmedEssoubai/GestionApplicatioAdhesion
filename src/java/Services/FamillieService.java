@@ -22,10 +22,10 @@ public class FamillieService implements iServices<Famille>{
     public boolean _Add(Famille obj) {
  try
 		{
-			preparedStatement = assistant.prepareStatement("INSERT INTO FAMILLES(ID_UTILISATEUR,ID_TUTEUR)VALUES(?,?,?)");	
+			preparedStatement = assistant.prepareStatement("INSERT INTO FAMILLES(ID_UTILISATEUR,ID_TUTEUR,RECEVOIR_OPT)VALUES(?,?,?)");	
 			preparedStatement.setInt(1, obj.getID_UTILISATEUR());
                         preparedStatement.setInt(2, obj.getID_TUTEUR());
-                        preparedStatement.setInt(2, obj.getRECEVOIR_OPT());
+                        preparedStatement.setInt(3, obj.getRECEVOIR_OPT());
 			preparedStatement.execute();
 			return true;
 		}
