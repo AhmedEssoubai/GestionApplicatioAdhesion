@@ -3,6 +3,9 @@ var id = 1;
 
 function addParent()
 {
+    if (count > 4)
+        return;
+    
     var nom = getElementInsideContainer(getEml("new"), "nom").value;
     var prenom = getElementInsideContainer(getEml("new"), "prenom").value;
     var cin = getElementInsideContainer(getEml("new"), "cin").value;
