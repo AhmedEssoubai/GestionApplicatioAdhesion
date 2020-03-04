@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Controllers;
-/* /connect          URL*/
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,22 +12,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import DbContexte.*;
-import Models.Utilisateur;
 import Services.*;
+import Models.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Resource;
 
 /**
  *
  * @author Zed
  */
-@WebServlet(name = "ConnectionController", urlPatterns = {"/Connect"})
-public class ConnectionController extends HttpServlet {
-    
-    private static final long serialVersionUID = 1L;
+@WebServlet(name = "Signin", urlPatterns = {"/Signin"})
+public class Signin extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,10 +42,10 @@ public class ConnectionController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConnectionController</title>");            
+            out.println("<title>Servlet Signin</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConnectionController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Signin at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -80,33 +77,64 @@ public class ConnectionController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-       try { 
-           Utilisateur utilisateur;
-            utilisateur = null;
-           UserService u = new UserService();
-           if (email != null && password != null)
-           {
-           utilisateur=(Utilisateur)u._verify(email, password);
-           response.sendRedirect(request.getContextPath() + "/Ajouter");
-        }
-           } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            ParentService P = new ParentService();
+            UserService U = new UserService();
+            FamillieService F = new FamillieService();
+            String nom=request.getParameter("nom");
+            String prenom=request.getParameter("prenom");
+            String cin=request.getParameter("cin");
+            String email=request.getParameter("email");
+            String password=request.getParameter("password");                                       
+            String tel=request.getParameter("tel");
+            String profession=request.getParameter("profession");
+            String recevoir=request.getParameter("recevoir");
+            
+            
+            Parents Pa= new Parents(prenom, nom, cin, tel, email, profession);
+            Utilisateur User = new Utilisateur(email, password);
+            P._Add(Pa);
+            Pa=P._get_by_cin(cin);
+            U._Add(User);
+            User=U._verify(email, password);
+            if(!request.getParameter("delegue").equals("")){
+                if(!request.getParameter("recevoir").equals("")){
+                    Famille f = new Famille(User.getID(),Pa.getID(),Integer.parseInt(recevoir));
+                     F._Add(f);
+                    Pa.setID_famille(f.getID_famille());
+                }
+                else {
+                     Famille f1 = new Famille(User.getID(),Pa.getID(),0);
+                     F._Add(f1);
+                    Pa.setID_famille(f1.getID_famille());
+                    }
+            }
+            response.sendRedirect(request.getContextPath() + "/Login");
+            
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Signin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Signin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Signin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
-        }{
-           
-       
-           }
-   
+            Logger.getLogger(Signin.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
 
     /**
      * Returns a short description of the servlet.

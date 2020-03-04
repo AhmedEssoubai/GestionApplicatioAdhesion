@@ -16,6 +16,29 @@
     <servlet-name>Sign</servlet-name>
     <jsp-file>/WEB-INF/views/inscrire.jsp</jsp-file>
     </servlet>
+    <servlet>
+    <servlet-name>ajouterenfant</servlet-name>
+    <jsp-file>/WEB-INF/views/famille/ajouter-enfants.jsp</jsp-file>
+    </servlet>
+    <servlet>
+    <servlet-name>parents</servlet-name>
+    <jsp-file>/WEB-INF/views/famille/parents.jsp</jsp-file>
+    </servlet>
+    <servlet>
+    <servlet-name>apropos</servlet-name>
+    <jsp-file>/WEB-INF/views/info/apropos.jsp</jsp-file>
+    </servlet>
+    <servlet>
+    <servlet-name>termes1</servlet-name>
+    <jsp-file>/WEB-INF/views/info/termes-assurance-1.jsp</jsp-file>
+    </servlet>
+    <servlet>
+    <servlet-name>termes2</servlet-name>
+    <jsp-file>/WEB-INF/views/info/termes-assurance-2.jsp</jsp-file>
+    </servlet>
+    
+    
+    
     <servlet-mapping>
     <servlet-name>accueil</servlet-name>
     <url-pattern>/Accueil</url-pattern>
@@ -28,6 +51,31 @@
     <servlet-name>Sign</servlet-name>
     <url-pattern>/Inscrire</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>ajouterenfant</servlet-name>
+    <url-pattern>/Ajouter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>parents</servlet-name>
+    <url-pattern>/parents</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>apropos</servlet-name>
+    <url-pattern>/apropos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>termes1</servlet-name>
+    <url-pattern>/termes1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>termes2</servlet-name>
+    <url-pattern>/termes2</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    
+    
     <error-page>
       <error-code>500</error-code>
       <location>/WEB-INF/views/error/error-500.jsp</location>

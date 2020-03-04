@@ -44,7 +44,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h5 class="text-secondary">Vous n'avez pas de compte ? veuillez s'inscrire ici : <a href="Login" class="_link">S'inscrire</a></h5>
+                    <h5 class="text-secondary">Vous n'avez pas de compte ? veuillez s'inscrire ici : <a href="Inscrire" class="_link">S'inscrire</a></h5>
                 </div>
             </div>
         </div>
