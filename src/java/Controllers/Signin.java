@@ -97,8 +97,9 @@ public class Signin extends HttpServlet {
             Pa=P._get_by_cin(cin);
             U._Add(User);
             User=U._verify(email, password);
-            if(!request.getParameter("delegue").equals("")){
-                if(!request.getParameter("recevoir").equals("")){
+            
+            if(request.getParameter("delegue")!=null){
+                if(request.getParameter("recevoir")!=null){
                     Famille f = new Famille(User.getID(),Pa.getID(),Integer.parseInt(recevoir));
                      F._Add(f);
                     Pa.setID_famille(f.getID_famille());
