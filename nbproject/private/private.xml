@@ -4,8 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/ahmed/Documents/NetBeansProjects/GestionApplicatioAdhesion/web/WEB-INF/views/famille/parents.jsp</file>
-            <file>file:/C:/Users/ahmed/Documents/NetBeansProjects/GestionApplicatioAdhesion/web/js/tuteurs-list.js</file>
-            <file>file:/C:/Users/ahmed/Documents/NetBeansProjects/GestionApplicatioAdhesion/web/js/enfants-list.js</file>
+            <file>file:/C:/Users/ahmed/Documents/NetBeansProjects/GestionApplicatioAdhesion/web/WEB-INF/views/famille/ajouter-enfants.jsp</file>
+            <file>file:/C:/Users/ahmed/Documents/NetBeansProjects/GestionApplicatioAdhesion/web/WEB-INF/views/info/apropos.jsp</file>
+            <file>file:/C:/Users/ahmed/Documents/NetBeansProjects/GestionApplicatioAdhesion/web/WEB-INF/views/info/termes-assurance-1.jsp</file>
+            <file>file:/C:/Users/ahmed/Documents/NetBeansProjects/GestionApplicatioAdhesion/web/WEB-INF/views/connecter.jsp</file>
+            <file>file:/C:/Users/ahmed/Documents/NetBeansProjects/GestionApplicatioAdhesion/web/WEB-INF/views/info/termes-assurance-2.jsp</file>
         </group>
     </open-files>
 </project-private>
