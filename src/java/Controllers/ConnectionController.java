@@ -106,7 +106,7 @@ public class ConnectionController extends HttpServlet {
    
         }
         
-    }
+    
 
     /**
      * Returns a short description of the servlet.

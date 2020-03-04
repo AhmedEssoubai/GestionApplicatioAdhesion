@@ -90,13 +90,26 @@ public class Signin extends HttpServlet {
             String profession=request.getParameter("profession");
             String recevoir=request.getParameter("recevoir");
             
-           // int delegue=Integer.parseInt(request.getParameter("delegue"));
+            
             Parents Pa= new Parents(prenom, nom, cin, tel, email, profession);
             Utilisateur User = new Utilisateur(email, password);
             P._Add(Pa);
+            Pa=P._get_by_cin(cin);
             U._Add(User);
-            F._Add(new Famille(User.getID(),Pa.getID(),Integer.parseInt(recevoir)));
-            response.sendRedirect(request.getContextPath() + "/Connect");
+            User=U._verify(email, password);
+            if(!request.getParameter("delegue").equals("")){
+                if(!request.getParameter("recevoir").equals("")){
+                    Famille f = new Famille(User.getID(),Pa.getID(),Integer.parseInt(recevoir));
+                     F._Add(f);
+                    Pa.setID_famille(f.getID_famille());
+                }
+                else {
+                     Famille f1 = new Famille(User.getID(),Pa.getID(),0);
+                     F._Add(f1);
+                    Pa.setID_famille(f1.getID_famille());
+                    }
+            }
+            response.sendRedirect(request.getContextPath() + "/Login");
             
             
         } catch (ClassNotFoundException ex) {

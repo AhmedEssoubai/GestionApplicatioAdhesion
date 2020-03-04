@@ -104,4 +104,8 @@ public class Famille {
         T.setID_famille(0);
         this.ListTuteurs.remove(T);
     }
+    public void ajouter_Tut(Parents T){
+        this.ListTuteurs.add(T);
+        T.setID_famille(ID_famille);
+    }
 }

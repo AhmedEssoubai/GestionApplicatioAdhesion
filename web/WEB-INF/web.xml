@@ -59,12 +59,15 @@
     <servlet-name>parents</servlet-name>
     <url-pattern>/parents</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
     <servlet-name>apropos</servlet-name>
     <url-pattern>/apropos</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
     <servlet-name>termes1</servlet-name>
     <url-pattern>/termes1</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
     <servlet-name>termes2</servlet-name>
     <url-pattern>/termes2</url-pattern>
     </servlet-mapping>

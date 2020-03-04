@@ -40,7 +40,7 @@ public class utilisateurFiltre implements Filter {
 		HttpServletResponse hresponse = (HttpServletResponse) response;
 		HttpSession session = hrequest.getSession();
 		if (session.getAttribute("utilisateur") == null)
-			hresponse.sendRedirect("Connecter");
+			hresponse.sendRedirect("Login");
 		else
 			chain.doFilter(request, response);
 	}

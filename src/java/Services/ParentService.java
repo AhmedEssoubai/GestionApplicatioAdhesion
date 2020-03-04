@@ -29,14 +29,14 @@ public class ParentService implements iServices<Parents>{
     public boolean _Add(Parents obj) {
  try
 		{
-			preparedStatement = assistant.prepareStatement("INSERT INTO PARENTS(PRENOM,NOM,CIN,TEL,EMAIL,PROFESSION,ID_FAMILLE)VALUES(?,?,?,?,?,?,?)");	
+			preparedStatement = assistant.prepareStatement("INSERT INTO PARENTS(PRENOM,NOM,CIN,TEL,EMAIL,PROFESSION)VALUES(?,?,?,?,?,?)");	
 			preparedStatement.setString(1, obj.getPrenom());
                         preparedStatement.setString(2, obj.getNom());
                         preparedStatement.setString(3, obj.getCin());
                         preparedStatement.setString(4,obj.getTel()); 
 			preparedStatement.setString(5, obj.getEmail());
                         preparedStatement.setString(6, obj.getProfession());
-			preparedStatement.setInt(7, obj.getID_famille());
+			
 			preparedStatement.execute();
 			return true;
 		}
@@ -111,6 +111,27 @@ public class ParentService implements iServices<Parents>{
 			e.printStackTrace();
 		}
         return result_list;
+    }
+ public Parents _get_by_cin(String cin) {
+     Parents p = null;   
+     try
+		{
+			
+			
+			preparedStatement = assistant.prepareStatement("SELECT * FROM PARENTS WHERE cin=?");
+                        preparedStatement.setString(1, cin);
+			
+			ResultSet result = preparedStatement.executeQuery();
+			
+			while (result.next())
+			{
+				 p = new Parents(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getInt(8));
+                        }
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+        return p;
     }
 
     
