@@ -27,7 +27,7 @@
                             <input id="motdepass" name="password" type="password" class="form-control" placeholder="Entrer votre mot de passe" />
                         </div>
                         <c:if test='${requestScope.err != null}'>
-                        	<span class="lead text-danger">Mot de passe ou e-mail incorrect</span>
+                            <span class="lead text-danger">Mot de passe ou e-mail incorrect</span>
                         </c:if>
                         <div class="form-groupe mt-5">
                             <button type="submit" class="btn btn-primary btn-lg form-control">

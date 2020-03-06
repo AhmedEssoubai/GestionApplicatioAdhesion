@@ -6,28 +6,51 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Ajoutez vos enfants</title>
+    <title>Enfants</title>
 </head>
 <body>
     <%@ include file="/WEB-INF/fragments/navbar.jspf" %>
     <section class="py-5 text-left bg-light">
         <div class="container">
             <div class="row">
-                <form action="AjouterEnfants" method="POST" class="container" onsubmit="return canSubmit()">
+                <div class="container px-0">
                     <div class="row">
-                        <h2 class="col text">Les enfants</h2>
+                        <h2 class="col text">Les enfants de <a class="_link" href="Parents?num=${requestScope.num_adhesion}">#${ requestScope.num_adhesion }</a></h2>
                     </div>
                     <div id="list" class="row">
-                        <div id="vide" class="col-12 text-muted text-center py-2 px-2">
+                        <div id="vide" class="col-12 text-muted text-center py-2 px-2 
+                            <c:if test="${fn:length(requestScope.enfants) != 0 }">
+                                hd
+                            </c:if>">
                             <h2 class="my-3" style="font-size: 3em"><i class="fas fa-book"></i></h2>
-                            <h4 class="my-3">Ajoutez vos enfants</h4>
+                            <h4 class="my-3">Ajoutez des enfants</h4>
                         </div>
+                        <c:forEach var="enfant" items="${requestScope.enfants }">
+                        <div id="enfant_${enfant.ID }" class="col-12 my-3">
+                            <div class="bg-white shadow-sm p-4">
+                                <div id="ds" class="d-flex">
+                                    <div class="flex-grow-1 d-flex flex-column">
+                                        <h4 id="nom" class="mb-4">${enfant.prenom } ${enfant.nom }</h4>
+                                        <p class="text-muted">Date de naissance : <span id="date">${enfant.date_naissence }</span></p>
+                                        <p class="text-muted">Classe : <span id="classe">${enfant.grade }</span></p>
+                                        <p class="text-muted">Assurance : <span id="assurance">${enfant.assurance }</span></p>
+                                    </div>
+                                    <div class="d-flex pl-2 pr-5">
+                                        <p>CNE : <span id="cne">${enfant.cne }</span></p>
+                                    </div>
+                                    <c:if test="${sessionScope.isAdmin}">
+                                    <div>
+                                        <div class="mx-3 icon-r"><a title="Supprimer" onclick="deleteEnfant(${enfant.ID })" role="button"><span><i class="fa fa-times"></i></span></a></div>
+                                    </div>
+                                    </c:if>
+                                </div>
+                            </div>
+                        </div>
+                        </c:forEach>
                     </div>
-                    <div class="my-3 d-flex justify-content-end">
-                        <button id="envoyer" type="submit" class="btn btn-sec px-5 mx-3" disabled>Envoyer</button>
-                    </div>
-                </form>
+                </div>
             </div>
+            <c:if test="${sessionScope.isAdmin}">
             <div class="row">
                 <div class="col my-3">
                     <div id="new" class="bg-white shadow-sm p-4">
@@ -52,18 +75,12 @@
                                         <option value="College">Collège</option>
                                         <option value="Lycee">Lycée</option>
                                     </select>
-                                    <select id="assurance" class="custom-select my-3" placeholder="Assurance" onchange="onAssuranceChanged(-1)" required >
+                                    <select id="assurance" class="custom-select my-3" placeholder="Assurance" required >
                                         <option value="Assurance Hospitalisation">Assurance Hospitalisation</option>
                                         <option value="Assurance Individuelle Accident">Assurance Individuelle Accident</option>
                                     </select>
-                                    <div class="custom-control custom-checkbox my-3">
-                                        <input class="custom-control-input" type="checkbox" id="accepter" onchange="onAccepterChanged(-1)">
-                                        <label class="custom-control-label" for="accepter">
-                                            J'ai lu et j'accepte <a id="terms" href="Termes1" class="_link">les conditions de l'assurance</a>
-                                        </label
-                                    </div>
                                     <div class="mt-4 d-flex justify-content-end">
-                                        <button id="btn_add" type="submit" class="btn btn-primary px-5" disabled>Ajouter</button>
+                                        <button id="btn_add" type="submit" class="btn btn-primary px-5">Ajouter</button>
                                     </div>
                                 </div>
                             </div>
@@ -71,11 +88,20 @@
                     </div>
                 </div>
             </div>
+            </c:if>
         </div>
     </section>
 
-    <script src="js/functions.js"></script>
-    <script src="js/enfants-list.js"></script>
+    <c:if test="${sessionScope.isAdmin}">
+        <script>
+            var num = ${ requestScope.num_adhesion };
+            $( document ).ready(function() {
+                count = ${fn:length(requestScope.enfants)};
+            });
+        </script>
+        <script src="js/functions.js"></script>
+        <script src="js/enfants-list-admin.js"></script>
+    </c:if>
     <%@ include file="/WEB-INF/fragments/footer.jspf" %>
 </body>
 </html>

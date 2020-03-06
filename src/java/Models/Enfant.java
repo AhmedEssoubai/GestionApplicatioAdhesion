@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Models;
 
 import java.util.Date;
-
 
 /**
  *
@@ -19,7 +13,7 @@ public class Enfant {
     private String cne; 
     private Date date_naissence;
     private String grade;
-    private String Assurance;
+    private String assurance;
     private int ID_famille;
 
     public Enfant(int ID, String nom, String prenom, String cne,Date date_naissence, String grade,String Assurance, int ID_famille) {
@@ -29,20 +23,22 @@ public class Enfant {
         this.cne = cne;
         this.date_naissence = date_naissence;
         this.grade = grade;
-        this.Assurance=Assurance;
+        this.assurance=Assurance;
         this.ID_famille = ID_famille;
     }
 
-
-   
-
-    public Enfant(String nom, String prenom, String cne, String email, Date date_naissence, String grade,String Assurance) {
+    public Enfant(String nom, String prenom, String cne, Date date_naissence, String grade,String Assurance, int ID_famille) {
         this.nom = nom;
         this.prenom = prenom;
         this.cne = cne;
         this.date_naissence = date_naissence;
         this.grade = grade;
-        this.Assurance=Assurance;
+        this.assurance=Assurance;
+        this.ID_famille = ID_famille;
+    }
+
+    public Enfant(int id) {
+        ID = id;
     }
 
     public int getID_famille() {
@@ -70,8 +66,6 @@ public class Enfant {
         return cne;
     }
 
-    
-
     public Date getDate_naissence() {
         return date_naissence;
     }
@@ -80,7 +74,7 @@ public class Enfant {
         return grade;
     }
     public String getAssurance() {
-        return Assurance;
+        return assurance;
     }
     public void setID(int ID) {
         this.ID = ID;
@@ -112,7 +106,7 @@ public class Enfant {
    
 
     public void setAssurance(String Assurance) {
-        this.Assurance = Assurance;
+        this.assurance = Assurance;
     }
 
     

@@ -1,4 +1,5 @@
-<%@ page language="java"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,17 +14,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center text-white pt-md-5">
-                    <h1 class="display-2 mt-5 pt-5">
-                        Partager avec nous! 
+                    <h1 class="display-4 mt-5 pt-5">
+                        “Children are likely to live up to what you believe of them.”
                     </h1>
                     <p class="lead">
-                        avec Bisd Community vous pouvez partager tous ce que vous voulez avec les autres.
+                        Lady Bird Johnson Former <i>First Lady of the United States</i>
                     </p>
+                    <c:if test="${sessionScope.utilisateur == null }">
                     <div class="mt-5">
                         <a href="Inscrire" class="btn btn-sec btn-lg px-5 rounded-pill">
                             S'inscrire
                         </a>
                     </div>
+                    </c:if>
                 </div>
             </div>
         </div>
@@ -35,10 +38,10 @@
                 <div class="col">
                     <div class="mb-5">
                         <h1 class="text-primary pb-3">
-                            Bisd Community
+                            Club d'adhésion
                         </h1>
                         <p class="lead pb-3">
-                            Bisd Community est un site de partage pour les �tudiants afin de partager des cours, des exercices, poser des questions ; pour partager les connaissences.
+                            Club d'adhésion est un mini-projet de JEE créé par Ahmed Essoubai et Moubarak Najih
                         </p>
                     </div>
                 </div>

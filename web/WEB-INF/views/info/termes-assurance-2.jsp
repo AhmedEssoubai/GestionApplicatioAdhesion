@@ -12,8 +12,8 @@
     <section class="py-5 bg-faded">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 p-5 shadow-sm bg-light">
-                    <h2>Termes et conditions de Assurance Individuelle Accident</h2>
+                <div class="col-lg-8 offset-lg-2 p-5 shadow-sm bg-light">
+                    <h2 class="mb-4">Termes et conditions de Assurance Individuelle Accident</h2>
                     <p>
                         Nous sommes susceptibles de modifier ces Conditions 
                         d’Utilisation ou toute autre condition d’utilisation 

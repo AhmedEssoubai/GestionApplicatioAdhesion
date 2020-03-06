@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Articles</title>
+    <title>Error-500</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
 </head>
 <body>
@@ -21,7 +21,7 @@
                         Il y a une erreur d'erreur s'est produite, peut-être parce que la base de données
                     </div>
                     <div class="text-white my-3">
-                        <a href="/" class="btn btn-primary btn-lg">
+                        <a href="Accueil" class="btn btn-primary btn-lg">
                             Accueil 
                         </a>
                     </div>

@@ -1,58 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
-/* /connect          URL*/
+
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import DbContexte.*;
 import Models.Utilisateur;
 import Services.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Zed
  */
 @WebServlet(name = "ConnectionController", urlPatterns = {"/Connect"})
-public class ConnectionController extends HttpServlet {
+public class ConnectionController extends Controller {
     
     private static final long serialVersionUID = 1L;
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ConnectionController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ConnectionController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -66,7 +34,8 @@ public class ConnectionController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/views/connecter.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**
@@ -80,31 +49,53 @@ public class ConnectionController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-       try { 
-           Utilisateur utilisateur;
-            utilisateur = null;
-           UserService u = new UserService();
-           if (email != null && password != null)
-           {
-           utilisateur=(Utilisateur)u._verify(email, password);
-           response.sendRedirect(request.getContextPath() + "/Ajouter");
+        boolean valid = false;
+        Utilisateur utilisateur = null;
+        FamillieService famillieService = null;
+        EnfantService es = null;
+        
+        try { 
+            UserService utilisateurService = new UserService(getData());
+            famillieService = new FamillieService(getData());
+            String email = request.getParameter("email");
+            String motPasse = request.getParameter("password");
+            es = new EnfantService(getData());
+        
+            if (email != null && motPasse != null)
+            {
+                utilisateur = utilisateurService.verify(email, motPasse);
+                if (utilisateur != null)
+                    valid = true;
+            }
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
         }
-           } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(ConnectionController.class.getName()).log(Level.SEVERE, null, ex);
-        }{
-           
-       
-           }
-   
+        
+        if (valid)
+        {
+            HttpSession session = request.getSession();
+            session.setAttribute("utilisateur", utilisateur);
+            int num = famillieService.hasFamily(utilisateur);
+            session.setAttribute("isAdmin", famillieService != null && num == -1);
+            session.setAttribute("num_adhesion", num);
+            String dir = "Accueil"; 
+            if (num != -1)
+            {
+                boolean complete = es.getCountByFamily(num) != 0;
+                session.setAttribute("complete", complete);
+                if (complete)
+                    dir = "Parents?num=" + num;
+                else
+                    dir = "AjouterEnfants";
+            }
+            response.sendRedirect(dir);
         }
+        else
+        {
+            request.setAttribute("err", 1);
+            doGet(request, response);
+        }
+    }
         
     
 

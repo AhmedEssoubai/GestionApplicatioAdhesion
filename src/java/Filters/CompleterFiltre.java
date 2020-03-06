@@ -13,15 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet Filter implementation class clientFiltre
+ *
+ * @author ahmed
  */
-@WebFilter("/adminFiltre")
-public class adminFiltre implements Filter {
+@WebFilter("/completerFiltre")
+public class CompleterFiltre implements Filter {
 
     /**
      * Default constructor. 
      */
-    public adminFiltre() {
+    public CompleterFiltre() {
         // TODO Auto-generated constructor stub
     }
 
@@ -29,7 +30,7 @@ public class adminFiltre implements Filter {
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-            // TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -39,17 +40,25 @@ public class adminFiltre implements Filter {
             HttpServletRequest hrequest = (HttpServletRequest)request;
             HttpServletResponse hresponse = (HttpServletResponse) response;
             HttpSession session = hrequest.getSession();
-            if (!(boolean)session.getAttribute("isAdmin"))
-                hresponse.sendRedirect("Login");
+            if (session.getAttribute("utilisateur") == null)
+            {
+                hresponse.sendRedirect("Connect");
+            }
             else
-                chain.doFilter(request, response);
+            {
+                Object complete = session.getAttribute("complete");
+                if (complete != null && !(boolean)complete)
+                    chain.doFilter(request, response);
+                else
+                    hresponse.sendRedirect("Parents?num=" + session.getAttribute("num_adhesion"));
+            }
 	}
 
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-            // TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 	}
 
 }

@@ -23,38 +23,38 @@ function addEnfant()
                             '<p>CNE : <span id="cne">' + cne + '</span></p>' + 
                         '</div>' + 
                         '<div class="d-flex">' + 
-                            '<div class="mx-3 icon-g"><a title="Editer" onclick="editEnfant(' + id + ')"><span><i class="fas fa-pen"></i></span></a></div>' + 
+                            '<div class="mx-3 icon-mute"><a title="Editer" onclick="editEnfant(' + id + ')"><span><i class="fas fa-pen"></i></span></a></div>' + 
                             '<div class="mx-3 icon-r"><a title="Supprimer" onclick="deleteEnfant(' + id + ')" role="button"><span><i class="fa fa-times"></i></span></a></div>' + 
                         '</div>' + 
                     '</div>' + 
                     '<div id="edt" class="container px-0 hd">' + 
                         '<div class="row my-3">' + 
                             '<div class="col-md-5 pr-1">' + 
-                                '<input id="prenom" type="text" class="form-control" placeholder="Prenom" value="' + prenom + '" required />' + 
+                                '<input id="prenom" name="prenom" maxlength="125" type="text" class="form-control" placeholder="Prenom" value="' + prenom + '" required />' + 
                             '</div>' + 
                         '<div class="col-md-5 pr-4">' + 
-                            '<input id="nom" type="text" class="form-control" placeholder="Nom" value="' + nom + '" required />' + 
+                            '<input id="nom" name="nom" type="text" maxlength="125" class="form-control" placeholder="Nom" value="' + nom + '" required />' + 
                         '</div>' + 
                         '<div class="col-md-2">' + 
-                            '<input id="cne" type="text" class="form-control" placeholder="CNE" value="' + cne + '" required />' + 
+                            '<input id="cne" name="cne" type="text" maxlength="10" class="form-control" placeholder="CNE" value="' + cne + '" required />' + 
                         '</div>' + 
                     '</div>' + 
                     '<div class="row my-3">' + 
                         '<div class="col">' + 
-                            '<input id="date_naissance" class="form-control my-3" type="date" placeholder="Date de naissance" value="' + date_naissance + '" required />' + 
-                            '<select id="classe" class="custom-select my-3" placeholder="Classe" required>' + 
+                            '<input id="date_naissance" name="date_naissance" class="form-control my-3" type="date" placeholder="Date de naissance" value="' + date_naissance + '" required />' + 
+                            '<select id="classe" name="classe" class="custom-select my-3" placeholder="Classe" required>' + 
                                 '<option value="Primaire" ' + (classe == 'Primaire' ? 'selected' : '') + '>Primaire</option>' + 
-                                '<option value="Collège" ' + (classe == 'Collège' ? 'selected' : '') + '>Collège</option>' + 
-                                '<option value="Lycée" ' + (classe == 'Lycée' ? 'selected' : '') + '>Lycée</option>' + 
+                                '<option value="Collège" ' + (classe == 'College' ? 'selected' : '') + '>College</option>' + 
+                                '<option value="Lycée" ' + (classe == 'Lycee' ? 'selected' : '') + '>Lycee</option>' + 
                             '</select>' + 
-                            '<select id="assurance" class="custom-select my-3" placeholder="Assurance" onchange="onAssuranceChanged(' + id + ')" required>' + 
-                                '<option value="Assurance Hospitalisation/Soins de santé" ' + (assurance == 'Assurance Hospitalisation/Soins de santé' ? 'selected' : '') + '>Assurance Hospitalisation/Soins de santé</option>' + 
+                            '<select id="assurance" name="assurance" class="custom-select my-3" placeholder="Assurance" onchange="onAssuranceChanged(' + id + ')" required>' + 
+                                '<option value="Assurance Hospitalisation" ' + (assurance == 'Assurance Hospitalisation' ? 'selected' : '') + '>Assurance Hospitalisation</option>' + 
                                 '<option value="Assurance Individuelle Accident" ' + (assurance == 'Assurance Individuelle Accident' ? 'selected' : '') + '>Assurance Individuelle Accident</option>' + 
                             '</select>' + 
                             '<div class="custom-control custom-checkbox my-3">' + 
                                 '<input class="custom-control-input" type="checkbox" id="accepter_' + id + '" checked onchange="onAccepterChanged(' + id + ')">' + 
                                 '<label class="custom-control-label" for="accepter_' + id + '">' + 
-                                    "J'ai lu et j'accepte les conditions de l'assurance" + 
+                                    'J\'ai lu et j\'accepte <a id="terms" href="' + (assurance == 'Assurance Hospitalisation' ? 'Termes1' : 'Termes2') + '" class="_link">les conditions de l\'assurance</a>' + 
                                 '</label>' + 
                             '</div>' + 
                             '<div class="mt-4 d-flex justify-content-end">' + 
@@ -133,11 +133,16 @@ function onAssuranceChanged(id)
     if (id >= 0)
     {
         var edt = getElementInsideContainer(getEml("enfant_" + id), "edt");
+        var assurance = getElementInsideContainer(edt, "assurance").value;
+        getElementInsideContainer(edt, "terms").href = (assurance == 'Assurance Hospitalisation' ? 'Termes1' : 'Termes2');
         getEml("accepter_" + id).checked = false;
         getElementInsideContainer(edt, "btn_update").disabled = true;
     }
     else
     {
+        var n = getEml("new");
+        var assurance = getElementInsideContainer(n, "assurance").value;
+        getElementInsideContainer(n, "terms").href = (assurance == 'Assurance Hospitalisation' ? 'Termes1' : 'Termes2');
         getEml("accepter").checked = false;
         getEml("btn_add").disabled = true;
     }

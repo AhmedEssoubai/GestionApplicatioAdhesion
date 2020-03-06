@@ -1,4 +1,4 @@
-package controllers.filtres;
+package Filters;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -13,15 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet Filter implementation class clientFiltre
+ *
+ * @author ahmed
  */
 @WebFilter("/utilisateurFiltre")
-public class utilisateurFiltre implements Filter {
+public class UtilisateurFiltre implements Filter {
 
     /**
      * Default constructor. 
      */
-    public utilisateurFiltre() {
+    public UtilisateurFiltre() {
         // TODO Auto-generated constructor stub
     }
 
@@ -36,13 +37,19 @@ public class utilisateurFiltre implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest hrequest = (HttpServletRequest)request;
-		HttpServletResponse hresponse = (HttpServletResponse) response;
-		HttpSession session = hrequest.getSession();
-		if (session.getAttribute("utilisateur") == null)
-			hresponse.sendRedirect("Login");
-		else
-			chain.doFilter(request, response);
+            HttpServletRequest hrequest = (HttpServletRequest)request;
+            HttpServletResponse hresponse = (HttpServletResponse) response;
+            HttpSession session = hrequest.getSession();
+            if (session.getAttribute("utilisateur") == null)
+                hresponse.sendRedirect("Connect");
+            else
+            {
+                Object complete = session.getAttribute("complete");
+                if (complete == null || (boolean)complete)
+                    chain.doFilter(request, response);
+                else
+                    hresponse.sendRedirect("AjouterEnfants");
+            }
 	}
 
 	/**

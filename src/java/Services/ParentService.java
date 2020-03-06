@@ -1,188 +1,170 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Services;
 import Models.*;
 import DbContexte.*;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.sql.DataSource;
 
-public class ParentService implements iServices<Parents>{
+/**
+ *
+ * @author Zed
+ */
+public class ParentService implements IServices<Parent>{
 
-    
-    
     private DBContexte assistant;
     private PreparedStatement preparedStatement;
     
-    
-    public ParentService() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-		assistant = DBContexte.getAssistant();
-	}
-    
-    
-    
-    @Override
-    public boolean _Add(Parents obj) {
- try
-		{
-			preparedStatement = assistant.prepareStatement("INSERT INTO PARENTS(PRENOM,NOM,CIN,TEL,EMAIL,PROFESSION)VALUES(?,?,?,?,?,?)");	
-			preparedStatement.setString(1, obj.getPrenom());
-                        preparedStatement.setString(2, obj.getNom());
-                        preparedStatement.setString(3, obj.getCin());
-                        preparedStatement.setString(4,obj.getTel()); 
-			preparedStatement.setString(5, obj.getEmail());
-                        preparedStatement.setString(6, obj.getProfession());
-			
-			preparedStatement.execute();
-			return true;
-		}
-		catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-		return false;
-    
-    
+    public ParentService(DataSource data) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        assistant = DBContexte.getAssistant(data);
     }
-
-    @Override
-    public Parents _get(int id) {
-
-    Parents parent = null;
-		try
-		{
-			preparedStatement = assistant.prepareStatement("SELECT * FROM PARENTS WHERE id = ?");
-			
-			preparedStatement.setInt(1, id);
-			
-			ResultSet result = preparedStatement.executeQuery();
-			
-			if (result.next())
-			{
-				parent = new Parents(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getInt(8));
-			}
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return parent;
     
-    }
-
     @Override
-    public ArrayList<Parents> _getAll() {
-         ArrayList<Parents> result_list= new ArrayList<Parents>();
+    public int add(Parent obj) {
         try
-		{	
-			ResultSet result = assistant.createStatement().executeQuery("SELECT * FROM  PARENTS ");
-			
-			while (result.next())
-			{
-				result_list.add(new Parents(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getInt(8)));
-			}
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-        return result_list;
-    
+        {
+            preparedStatement = assistant.prepareStatement("INSERT INTO PARENTS(PRENOM, NOM, CIN, TEL, EMAIL, PROFESSION, ID_FAMILLE)VALUES(?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);	
+            preparedStatement.setString(1, obj.getPrenom());
+            preparedStatement.setString(2, obj.getNom());
+            preparedStatement.setString(3, obj.getCin());
+            preparedStatement.setString(4,obj.getTel()); 
+            preparedStatement.setString(5, obj.getEmail());
+            preparedStatement.setString(6, obj.getProfession());
+            preparedStatement.setInt(7, obj.getID_famille());
+            preparedStatement.execute();
+            
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return (int)generatedKeys.getLong(1);
+                }
+                else {
+                    throw new SQLException("Creating failed, no ID obtained.");
+                }
+            }
+        }
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return -1;
+    }
+
+    @Override
+    public Parent get(int id) {
+        Parent parent = null;
+        try
+        {
+            preparedStatement = assistant.prepareStatement("SELECT * FROM PARENTS WHERE id = ?");
+
+            preparedStatement.setInt(1, id);
+
+            ResultSet result = preparedStatement.executeQuery();
+
+            if (result.next())
+            {
+                parent = new Parent(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getInt(8));
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return parent;
     
     }
-    public ArrayList<Parents> _getAll_byFamily(int ID_Famille) {
-        ArrayList<Parents> result_list= new ArrayList<Parents>();
+
+    @Override
+    public ArrayList<Parent> getAll() {
+        ArrayList<Parent> result_list= new ArrayList<>();
         try
-		{
-			
-			
-			preparedStatement = assistant.prepareStatement("SELECT * FROM PARENTS WHERE ID_FAMILLE=?");
-                        preparedStatement.setInt(1, ID_Famille);
-			
-			ResultSet result = preparedStatement.executeQuery();
-			
-			while (result.next())
-			{
-				result_list.add(new Parents(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getInt(8)));
-                        }
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
+        {	
+            ResultSet result = assistant.createStatement().executeQuery("SELECT * FROM  PARENTS ");
+
+            while (result.next())
+            {
+                result_list.add(new Parent(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getInt(8)));
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
         return result_list;
     }
- public Parents _get_by_cin(String cin) {
-     Parents p = null;   
-     try
-		{
-			
-			
-			preparedStatement = assistant.prepareStatement("SELECT * FROM PARENTS WHERE cin=?");
-                        preparedStatement.setString(1, cin);
-			
-			ResultSet result = preparedStatement.executeQuery();
-			
-			while (result.next())
-			{
-				 p = new Parents(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getInt(8));
-                        }
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
+    
+    public ArrayList<Parent> getByFamily(int ID_Famille, int except) {
+        ArrayList<Parent> result_list= new ArrayList<>();
+        try
+        {
+            preparedStatement = assistant.prepareStatement("SELECT * FROM PARENTS WHERE ID_FAMILLE=? AND ID != ?");
+            preparedStatement.setInt(1, ID_Famille);
+            preparedStatement.setInt(2, except);
+
+            ResultSet result = preparedStatement.executeQuery();
+
+            while (result.next())
+            {
+                result_list.add(new Parent(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getInt(8)));
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result_list;
+    }
+    
+    public Parent getByCin(String cin) {
+        Parent p = null;   
+        try
+        {
+            preparedStatement = assistant.prepareStatement("SELECT * FROM PARENTS WHERE cin=?");
+            preparedStatement.setString(1, cin);
+
+            ResultSet result = preparedStatement.executeQuery();
+
+            while (result.next())
+            {
+                p = new Parent(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getInt(8));
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
         return p;
     }
-
     
     @Override
-    public boolean _delete(Parents obj) {
-             try
-		{
-			preparedStatement = assistant.prepareStatement("DELETE FROM PARENTS WHERE id = ?");
-			preparedStatement.setInt(1, obj.getID());
-			preparedStatement.execute();
-                        //enfant should be deleted from family's arraylist 
-                        try{ 
-                            FamillieService e = new FamillieService();
-                            UserService u = new UserService();
-                            Famille myfamily = e._get(obj.getID_famille());
-                                myfamily.delete_Tut(obj);
-                            u._delete(u._get(obj.getID()));
-                                }catch(Exception e){
-                            System.out.println(e.getMessage());
-                                    } 
-			return true;
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return false;
+    public boolean delete(Parent obj) {
+        try
+        {
+            preparedStatement = assistant.prepareStatement("DELETE FROM PARENTS WHERE id = ?");
+            preparedStatement.setInt(1, obj.getID());
+            preparedStatement.execute();
+            return true;
+        }
+        catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return false;
     }
 
     @Override
-    public boolean _update(int id, Parents obj) {
+    public boolean update(int id, Parent obj) {
+        try
+        {
+            preparedStatement = assistant.prepareStatement("UPDATE PARENTS SET PRENOM=?,NOM=?,CIN=?,TEL=?,EMAIL=?,PROFESSION=?,ID_FAMILLE=? WHERE ID=?");	
 
-         try
-		{
-			preparedStatement = assistant.prepareStatement("UPDATE PARENTS SET PRENOM=?,NOM=?,CIN=?,TEL=?,EMAIL=?,PROFESSION=?,ID_FAMILLE=? WHERE ID=?");	
-			
-                        preparedStatement.setString(1,obj.getPrenom() );
-                        preparedStatement.setString(2,obj.getNom() );
-                        preparedStatement.setString(3, obj.getCin());
-                        preparedStatement.setString(4,obj.getTel()); 
-			preparedStatement.setString(5, obj.getEmail());
-                        preparedStatement.setString(6, obj.getProfession());
-			preparedStatement.setInt(7, obj.getID_famille());
-                        preparedStatement.setInt(8, id);
-			preparedStatement.execute();
-			return true;
-		}
-		catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-		return false;
-    
+            preparedStatement.setString(1,obj.getPrenom() );
+            preparedStatement.setString(2,obj.getNom() );
+            preparedStatement.setString(3, obj.getCin());
+            preparedStatement.setString(4,obj.getTel()); 
+            preparedStatement.setString(5, obj.getEmail());
+            preparedStatement.setString(6, obj.getProfession());
+            preparedStatement.setInt(7, obj.getID_famille());
+            preparedStatement.setInt(8, id);
+            preparedStatement.execute();
+            return true;
+        }
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
     
 }

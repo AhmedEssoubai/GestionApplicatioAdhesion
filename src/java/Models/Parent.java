@@ -1,46 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Models;
 
 /**
  *
  * @author Zed
  */
-public class Parents {
+public class Parent {
     private int ID;
     private String prenom;
     private String nom;
     private String cin;
-    private String Tel;
+    private String tel;
     private String email;
     private String profession;
     private int ID_famille;
 
-    public Parents(String firstname, String lastname, String cin, String phone, String email, String job) {
+    public Parent(String firstname, String lastname, String cin, String phone, String email, String job, int ID_famille) {
         this.prenom = firstname;
         this.nom = lastname;
         this.cin = cin;
-        this.Tel = phone;
+        this.tel = phone;
         this.email = email;
         this.profession = job;
-        
+        this.ID_famille = ID_famille;
     }
-
     
-
-    public Parents(int ID, String prenom, String nom, String cin, String Tel, String email, String profession,int ID_famille) {
+    public Parent(int ID, String prenom, String nom, String cin, String Tel, String email, String profession,int ID_famille) {
         this.ID = ID;
         this.prenom = prenom;
         this.nom = nom;
         this.cin = cin;
-        this.Tel = Tel;
+        this.tel = Tel;
         this.email = email;
         this.profession = profession;
         this.ID_famille=ID_famille;
-        
+    }
+    
+    public Parent(int ID) {
+        this.ID = ID;
     }
 
     public int getID() {
@@ -60,7 +56,7 @@ public class Parents {
     }
 
     public String getTel() {
-        return Tel;
+        return tel;
     }
 
     public String getEmail() {
@@ -92,7 +88,7 @@ public class Parents {
     }
 
     public void setTel(String Tel) {
-        this.Tel = Tel;
+        this.tel = Tel;
     }
 
     public void setEmail(String email) {

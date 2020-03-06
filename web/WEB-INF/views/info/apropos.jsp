@@ -15,12 +15,11 @@
                 <div class="col">
                     <div class="mb-5">
                         <h1 class="text-primary pb-3">
-                            Bisd Community
+                            Club d'adhésion
                         </h1>
                         <p class="lead pb-3">
-                            Bisd Community est un site de partage pour les étudiants afin de partager des cours, des exercices, poser des questions ; pour partager les connaissences.
-                            Etant des etudiants d'ecole nationale des sciences appliquées , on'est invité a realiser un projet de partage au fin du module de cycle de vie.
-                            cet projet est realiser par <strong>Ahmed Essoubai</strong> et <strong>Najih Moubarak</strong>.
+                            Club d'adhésion est un site de gestion d’une application d’adhésion à une association et une souscription à une assurance.<br>
+                            ENSA Tanger, Master BISD 01 ce site est un mini-projet de fin du module de Java, realiser par <strong>Ahmed Essoubai</strong> et <strong>Najih Moubarak</strong>.
                         </p>
                     </div>
                 </div>

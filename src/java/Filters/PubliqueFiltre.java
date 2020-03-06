@@ -13,15 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet Filter implementation class clientFiltre
+ *
+ * @author ahmed
  */
 @WebFilter("/publiqueFiltre")
-public class publiqueFiltre implements Filter {
+public class PubliqueFiltre implements Filter {
 
     /**
      * Default constructor. 
      */
-    public publiqueFiltre() {
+    public PubliqueFiltre() {
         // TODO Auto-generated constructor stub
     }
 
@@ -40,7 +41,7 @@ public class publiqueFiltre implements Filter {
             HttpServletResponse hresponse = (HttpServletResponse) response;
             HttpSession session = hrequest.getSession();
             if (session.getAttribute("utilisateur") != null)
-                hresponse.sendRedirect("Home");
+                hresponse.sendRedirect("Accueil");
             else
                 chain.doFilter(request, response);
 	}

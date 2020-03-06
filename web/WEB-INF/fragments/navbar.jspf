@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/style-nav.css"/>
     <link rel="stylesheet" href="css/style-footer.css">
-    <script defer src="fontawesome/js/all.js"></script>
+    <script defer src="js/all.js"></script>
     <script src="js/jquery-3.4.1.slim.min.js" type="text/javascript"></script>
 </head>
 	
@@ -23,7 +23,7 @@
             <c:choose>
     		<c:when test="${sessionScope.utilisateur == null }">
                     <div class="ml-auto">
-                        <a href="Login" class="btn btn-outline-secondary navbar-btn mr-2">
+                        <a href="Connect" class="btn btn-outline-secondary navbar-btn mr-2">
                             Se connecter
                         </a>
                         <a href="Inscrire" class="btn btn-primary navbar-btn">
@@ -34,23 +34,26 @@
                 <c:otherwise>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Accueil</a>
+                            <a href="Accueil" class="nav-link">Accueil</a>
                         </li>
                         <c:choose>
-                                <c:when test="${type == 'c'}">
+                                <c:when test="${sessionScope.isAdmin}">
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link active">Parents</a>
+                                        <a href="Familles" class="nav-link">Familles</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">Enfants</a>
+                                        <a href="Notification" class="nav-link">Notification</a>
                                     </li>
                                 </c:when>
                                 <c:otherwise>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link active">Parents</a>
+                                        <a href="Parents?num=${sessionScope.num_adhesion}" class="nav-link">Parents</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">Enfants</a>
+                                        <a href="Enfants?num=${sessionScope.num_adhesion}" class="nav-link">Enfants</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="Facture?num=${sessionScope.num_adhesion}" class="nav-link">Facture</a>
                                     </li>
                                 </c:otherwise>
                         </c:choose>
@@ -59,8 +62,8 @@
                                 Compte
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dml_account">
-                                <a class="dropdown-item" href="#">Paramètres</a>
-                                <a class="dropdown-item" href="#">Se déconnecter</a>
+                                <a class="dropdown-item" href="Compte">Paramètres</a>
+                                <a class="dropdown-item" href="Deconnexion">Se déconnecter</a>
                             </div>
                         </li>
                     </ul>
@@ -69,5 +72,3 @@
         </div>
     </div>
 </nav>
-    
-<script type="text/javascript" src="js/autoSubmit"></script>

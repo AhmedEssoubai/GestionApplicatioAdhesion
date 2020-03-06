@@ -15,41 +15,41 @@
         <div class="container mw-100">
             <div class="row my-5">
                 <div class="col-sm-4 offset-sm-4 p-5 bg-white shadow">
-                    <form action="Signin" method="POST">
+                    <form action="Inscrire" method="POST" onsubmit="return checkInfo()">
                         <h2 class="mb-5 pb-3">
                             S'inscrire
                         </h2>
                         <div class="form-groupe my-3">
                             <label class="control-label" for="nom">Entrez votre nom : </label>
-                            <input id="nom" name="nom" value="${param.nom }" type="text" class="form-control" placeholder="Entrer votre prenom" required autofocus />
+                            <input id="nom" name="nom" maxlength="125" value="${param.nom }" type="text" class="form-control" placeholder="Entrer votre nom" required autofocus />
                         </div>
                         <div class="form-groupe my-3">
                             <label class="control-label" for="prenom">Entrez votre prenom : </label>
-                            <input id="prenom" name="prenom" value="${param.prenom }" type="text" class="form-control" placeholder="Entrez votre prenom" required />
+                            <input id="prenom" name="prenom" maxlength="125" value="${param.prenom }" type="text" class="form-control" placeholder="Entrez votre prenom" required />
                         </div>
                         <div class="form-groupe my-3">
                             <label class="control-label" for="cin">Entrez votre CIN : </label>
-                            <input id="cin" name="cin" type="text" value="${param.cin }" class="form-control" placeholder="Enrer vote CIN" required />
+                            <input id="cin" name="cin" type="text" maxlength="10" value="${param.cin }" class="form-control" placeholder="Enrer vote CIN" required />
                         </div>
                         <div class="form-groupe my-3">
                             <label class="control-label" for="email">Entrez votre address e-mail : </label>
-                            <input id="adresse" name="email" value="${param.email }" type="email" class="form-control" placeholder="Enrer vote email" required />
+                            <input id="adresse" name="email" maxlength="125" value="${param.email }" type="email" class="form-control" placeholder="Enrer vote email" required />
                         </div>
                         <div class="form-group  my-3">
                             <label for="password">Mot de passe : </label>
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Mot de passe" required />
+                            <input type="password" name="password" maxlength="55" class="form-control" id="password" placeholder="Mot de passe" required />
                         </div>
                         <div class="form-group  my-3">
                             <label for="passwordConf">Veuillez confirmer votre mot de passe : </label>
-                            <input type="password" name="passwordConf" class="form-control" id="passwordConf" placeholder="Confirmer le mot de passe" required />
+                            <input type="password" name="passwordConf" maxlength="55" class="form-control" id="passwordConf" placeholder="Confirmer le mot de passe" required />
                         </div>
                         <div class="form-groupe my-3">
                             <label class="control-label" for="tel">Entrez votre numéro de téléphone : </label>
-                            <input id="tel" name="tel" type="tel" value="${param.tel }" class="form-control" placeholder="Enrer vote numéro de téléphone" required />
+                            <input id="tel" name="tel" type="tel" maxlength="10" value="${param.tel }" class="form-control" placeholder="Enrer vote numéro de téléphone" required />
                         </div>
                         <div class="form-groupe my-3">
                             <label class="control-label" for="profession">Entrez votre profession : </label>
-                            <input id="profession" name="profession" value="${param.profession}" type="text" class="form-control" placeholder="Enrer vote profession" required />
+                            <input id="profession" name="profession" maxlength="125" value="${param.profession}" type="text" class="form-control" placeholder="Enrer vote profession" required />
                         </div>
                         <div class="custom-control custom-checkbox my-3">
                             <input class="custom-control-input" type="checkbox" id="recevoir" value="${param.recevoir }" name="recevoir" >
@@ -64,7 +64,7 @@
                             </label>
                         </div>
                         <c:if test='${requestScope.err != null}'>
-                        	<span class="lead errorMessage">Les informations données sont incorrectes</span>
+                            <span class="lead errorMessage">Les informations données sont incorrectes</span>
                         </c:if>
                         <div class="form-groupe mt-5">
                             <button type="submit" class="btn btn-primary btn-lg form-control">S'inscrire</button>
@@ -85,6 +85,13 @@
         </div>
     </section>
     
+    <script src="js/functions.js"></script>
+    <script>
+        function checkInfo()
+        {
+            return getEml("passwordConf").value == getEml("password").value;
+        }
+    </script>
     <%@ include file="/WEB-INF/fragments/footer.jspf" %>
 </body>
 </html>

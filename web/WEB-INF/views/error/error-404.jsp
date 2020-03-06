@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Articles</title>
+    <title>Error-500</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
 </head>
 <body>
@@ -20,7 +20,7 @@
                         Désolé, une erreur s'est produite, page demandée introuvable!
                     </div>
                     <div class="text-white my-3">
-                        <a href="/" class="btn btn-primary btn-lg">
+                        <a href="Accueil" class="btn btn-primary btn-lg">
                             Accueil 
                         </a>
                     </div>

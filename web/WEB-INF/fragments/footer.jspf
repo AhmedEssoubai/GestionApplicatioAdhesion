@@ -5,12 +5,13 @@
     <link rel="stylesheet" href="css/style-footer.css">
 </head>
 
+<script src="js/bootstrap.min.js"></script>
 <footer class="bg-white">
     <div class="border-top border-bottom bg-light">
         <div class="container">
             <div class="row my-3">
                 <span class="lead mr-auto my-auto">
-                    <a class="_link" href="#">A propos</a>
+                    <a class="_link" href="Apropos">A propos</a>
                 </span>
             </div>
         </div>
